@@ -1,0 +1,581 @@
+#total{
+        width: 1115px !important;
+}
+
+#main{
+	float: right;
+	height: 735px;
+	text-align: left;
+	background-image: url('http://test.anorexiya.com/img/orderforming/bloknot.png');
+    	background-repeat: no-repeat;
+	background-position: left 50px;
+}
+
+#leftpage{
+	width: 605px;
+        position: relative;
+	float: left;
+	margin-top: 73px;
+	margin-left: 35px;
+	padding-top: 20px;
+}
+
+#orderlistheader, #orderlistcontent{
+	float: left;
+}
+
+#orderlistheader{
+	margin-bottom: 5px;
+}
+
+#orderlistheader th{
+	text-transform: uppercase;
+	height: 42px;
+	color: #9c2a4c !important;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 10px;
+	font-weight: bold;
+	border: solid 1px #eae6e7;
+}
+
+#scroll{
+	overflow: auto;
+	width: 600px;
+	height: 510px;
+	margin-top: 4px;
+	border-top: solid 1px #d3a0b1;
+	border-bottom: solid 1px #d2e4e6;
+}
+
+#orderlistcontent td{
+	height: 30px;
+	color: #6d7273;
+	font-size: 10pt;
+	font-weight: bold;
+	vertical-align: middle;
+	border: solid 1px #e6e6e6;
+	border-left-width: 0px;
+}
+
+#orderlistcontent tr.oddrow td
+{
+	background-image: url('http://test.anorexiya.com/img/orderforming/rowbg.png');
+	background-repeat: repeat-y;
+	background-position: center center;
+}
+
+#orderlistcontent tr:focus {
+	outline: none; 
+}
+
+.naimenovanie{
+	width: 144px;
+	color: #404040 !important;
+	background-position: left center !important;
+}
+.kol-vo{
+	width: 56px;
+	text-align: center;
+}
+
+.cena{width: 56px;
+	text-align: center;
+}
+
+.skidka{width: 56px;
+	text-align: center;
+}
+
+.summa{width: 56px;
+	text-align: center;
+}
+
+.prod{width: 56px;
+	text-align: center;
+}
+
+.rekomand{width: 65px;
+	text-align: center;
+}
+
+.uslovia{width: 85px;
+	text-align: center;
+	border-right-width: 0px !important; 
+	background-position: right center !important;
+}
+
+#rightpage{
+	position: relative;
+	float: left;
+	width: 240px;
+	margin-top: 54px;
+	margin-left: 45px;
+	margin-right: 0px;
+	padding-top: 16px;
+	text-align: left;
+ 	background-repeat: no-repeat;
+	background-position: 95px top;
+}
+
+#rightpage h2{
+	margin-top: 37px;
+	width: 150px;
+	padding-bottom: 13px;
+	color: #b91c2f;
+	font-size: 16pt;
+	font-weight: bold;
+	text-align: left;
+	border-bottom: solid 1px #8f626c;
+}
+
+#orderdate{
+	height: 30px;
+	color: #364b46;
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: center;
+	background-image: url('../img/orderforming/datebg-new.png');
+ 	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+#ordersummary{
+	width: 150px;
+}
+
+#ordersummary tr{
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-image: url('http://test.anorexiya.com/img/orderforming/grayline.png');
+}
+
+#ordersummary tr.noline{
+	background-image: none;
+}
+
+.rightpagerow{
+	height: 30px;
+	vertical-align: middle;
+}
+
+.rowwredline
+{
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-image: url('http://test.anorexiya.com/img/orderforming/redline.png');
+}
+
+.redvalue{
+	color: #c93255;
+	font-weight: bold;
+}
+
+.rightbutton{
+	background-image: none !important;
+}
+
+.rightbutton a.button{
+	width: 76px;
+        text-align: center;
+}
+
+a.call{
+	border-width: 0px;
+	text-decoration: none;
+	display: block;
+	height: 28px;
+	background-image: url('http://test.anorexiya.com/img/orderforming/call-on.png');
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+a.call-off{
+	background-image: url('http://test.anorexiya.com/img/orderforming/call-off.png') !important;
+}
+
+#popup{
+	position: absolute;
+	width: 116px;
+	height: 187px;
+	left: 700px;
+	top: 460px;
+	background-image: url('http://test.anorexiya.com/img/orderforming/popup.png');
+    background-repeat: no-repeat;
+	background-position: left center;
+}
+
+#popup a{
+	border-width: 0px;
+	height: 86px;
+	text-decoration: none;
+	display: block;
+}
+
+div.single-form{
+	background-color: #f1f1f1;
+	position: absolute;
+	width: 451px;
+	left: 100px;
+	top: 120px;
+        border-radius: 3px;
+	box-shadow: 0px 0px 18px black;
+}
+
+#good-adding-3{
+    width: 414px;
+}
+
+div.single-form-header{
+	background: linear-gradient(#42ac2b, #186901);
+	background: -moz-linear-gradient(#42ac2b, #186901);
+	background: -ms-linear-gradient(#42ac2b, #186901);
+	background: -o-linear-gradient(#42ac2b, #186901);
+	background: -webkit-linear-gradient(#42ac2b, #186901);
+	color: white;
+        text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 13px;
+        border-radius: 3px 3px 0px 0px;
+}
+
+div.single-form-body{
+	padding: 20px;
+        padding-left: 30px;
+}
+
+div.single-form-body div.search{
+	padding-left: 10px;
+	padding-top: 1px;
+	background-color: white;
+	height: 25px;
+	border: solid 1px #ababab;
+	border-radius: 12px;
+	background-image: url(../img/orderforming/searchicon.png);
+	background-position: 10px center;
+	background-repeat: no-repeat;
+}
+
+div.single-form-body div.search input{
+	margin: 0px;
+	border-width: 0px;
+	width: 370px;
+	color: #ababab;
+	height: 21px;
+}
+
+.list-of-good{
+	margin-top: 20px;
+	text-align: left;
+	background-color: white;
+	border: solid 1px #ababab;
+	height: 245px;
+	overflow-y: auto;
+}
+
+.good-item{
+	display: block;
+	padding: 9px;
+	color: black;
+	font-weight: bold;
+	border-bottom: solid 1px #ababab;
+	width: 95%;
+}
+
+.selected{
+	background-color: #7ec4e5; 
+}
+
+.code-entering, .quontity-entering{
+        display: block;
+	margin-top: 20px;
+}
+
+.code-entering .code-entering-label{
+	float: left;
+	color: black;
+	padding: 7px;
+	text-align: left;
+        font-size: 10pt;
+        position: relative;
+}
+
+.quontity-entering-label{
+	float: left;
+	color: black;
+	width: 180px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.quontity-entering .for-quontity-input{
+    float: right;
+    width: 46%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.code-entering input{
+	float: right;
+	padding: 2px;
+	font-size: 16pt;
+	color: black;
+	font-weight: bold;
+}
+
+
+.code-entering input{
+	width: 200px;
+}
+
+.for-quontity-input input{
+
+	float: left;
+        padding: 2px;
+	font-size: 16pt;
+	color: black;
+	font-weight: bold;
+	width: 120px;
+        border: solid 1px gray; 
+        border-radius: 3px;
+        
+}
+
+.for-quontity-input .sht{
+
+	float: left;
+        padding: 6px;
+	color: black;
+	font-weight: bold;
+        
+}
+
+div.delimeter{
+	clear: both;
+}
+
+.single-form-buttons{
+	clear: both;
+	margin-top: 20px;
+}
+
+div.single-form-buttons a{
+	display: block;
+	float: right;
+	margin-left: 20px;
+}
+
+#good-adding-4{
+	display: none !important;
+}
+
+.singleform-left-panrel{
+	float: left;
+	width: 46%;
+}
+
+.singleform-right-panrel{
+	float: right;
+	width: 46%;
+}
+
+.list-of-period{
+	text-align: left;
+	background-color: white;
+	border: solid 1px #ababab;
+        border-radius: 3px;
+	height: 220px;
+	overflow-y: auto;
+}
+
+a.good-period{
+	display: block;
+	border-bottom: solid 1px #ababab;
+        padding: 10px 16px;
+}
+
+.good-period .month{
+	color: black;
+	font-weight: bold;
+        font-size: 10pt;
+        padding-bottom: 2px;
+}
+
+.good-period .quontity-by-month{
+	color: #8f8f8f;
+        font-size: 8pt;
+}
+
+.good-property{
+	margin-bottom: 20px;
+	text-align: left;
+        font-size: 10pt;
+}
+
+.good-property .label{
+	color: #8f8f8f;
+	margin-bottom: 5px;
+}
+
+.good-property .value{
+	color: black;
+	font-weight: bold;
+}
+
+#good-adding-4{
+	width: 840px;
+	height: 422px;
+	font-weight: bold;
+}
+
+.tovaryscroll{
+	width: 760px;
+	overflow-y: auto;
+	height: 220px;
+	margin: 10px 20px 20px 0px;
+	border-radius: 5px;
+	border: solid 1px #969696;
+}
+
+#good-adding-4 table{
+	width: 739px;
+	font-size: 10pt;
+}
+
+#zagolovki{
+	width: 760px !important;
+	margin-right: 20px;
+}
+
+#good-adding-4 tbody
+{
+	overflow-y: auto;
+}
+
+#good-adding-4 th
+{
+	vertical-align: middle;
+	color: #969696;
+	padding: 5px;
+}
+
+#good-adding-4 td
+{
+	vertical-align: middle;
+	color: black;
+	padding: 10px 0px 10px 7px;
+	border-bottom: solid 1px #e6e6e6;
+	vertical-align: center;
+}
+
+#good-adding-4 .tovar{
+	padding-left: 30px;
+	width: 25%;
+}
+
+#good-adding-4 .informacia{
+	width: 20%;
+}
+
+#good-adding-4 .nali4ie{
+	width: 20%;
+	text-align: center;
+}
+
+#good-adding-4 td.vzakaz{
+	padding-left: 6%;
+	width: 20%;
+}
+
+#good-adding-4 th.vzakaz{
+	text-align: left;
+	padding-left: 2%;
+	width: 20%;
+}
+
+#good-adding-4 .single-form-buttons{
+	margin-right: 28px;
+}
+
+#zakladki{
+	float: right;
+	width: 43px;
+	position: absolute;
+	left: 225px;
+        top: 2px;
+	z-index: 1;
+	margin-top: 30px;
+}
+
+#zakladki a.zakladka{
+		display: block;
+                position: relative;
+		border-radius: 0px 5px 5px 0px;
+		text-decoration: none;
+		text-align: center;
+                text-shadow: 0px 5px #666;
+		z-index: -1;
+		position: relative;
+                background-position: left top;
+                background-repeat: no-repeat;
+}
+
+#zakladki a.green{
+    background-image: url('../img/orderforming/z1_0.png');
+    height: 79px;
+}
+
+#zakladki a.blue{
+    background-image: url('../img/orderforming/z2_0.png');
+    height: 115px;
+    top: -8px;
+}
+
+#zakladki a.violet{
+    background-image: url('../img/orderforming/z3_0.png');
+    height: 108px;
+    top: -23px;
+}
+
+#zakladki a.red{
+    background-image: url('../img/orderforming/z4_0.png');
+    height: 185px;
+    top: -36px;
+}
+
+#zakladki a.yellow{
+    background-image: url('../img/orderforming/z5_0.png');
+    height: 166px;
+    top: -45px;
+}
+
+#zakladki a:hover.green,#zakladki a.green1{
+    background-image: url('../img/orderforming/z1_1.png');
+    z-index:1 !important;
+}
+
+#zakladki a:hover.blue, #zakladki a.blue1{
+    background-image: url('../img/orderforming/z2_1.png');
+    height: 115px;
+    z-index:1 !important;
+}
+
+#zakladki a:hover.violet, #zakladki a.violet1{
+    background-image: url('../img/orderforming/z3_1.png');
+    height: 108px;
+    background-position: 0px 2px;
+    z-index:1 !important;
+}
+
+#zakladki a:hover.red, #zakladki a.red1{
+    background-image: url('../img/orderforming/z4_1.png');
+    height: 185px;
+    z-index:1 !important;
+}
+
+#zakladki a:hover.yellow, #zakladki a.yellow1{
+    background-image: url('../img/orderforming/z5_1.png');
+    height: 166px;
+    z-index:1 !important;
+}

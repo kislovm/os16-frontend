@@ -1,0 +1,403 @@
+#main
+{
+	float: right;
+	width: 820px;
+}
+
+#main #for-order-header{
+    float: left;
+}
+
+#main table.header
+{
+	width: 100%;
+	margin-top: 26px;
+}
+
+#main td.left-from-header
+{
+	width: 40%;
+}
+
+#main td.header
+{
+	font-size: 24px;
+	width: 20%;
+	color: #a1a1a1;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+#main td.counter-green
+{
+	width: 40%;
+	vertical-align: top;
+}
+
+#main td.counter-red
+{
+	width: 40%;
+	vertical-align: top;
+}
+
+.degree{
+	color: white;
+	text-align: center;
+	width: 2em;
+	padding: 6px 0px 0px 0px;
+	font-size: 12px; 
+	font-weight: bold;
+    	background-repeat: no-repeat;
+	background-position: center top;
+	height: 23px;
+	float: left;
+}
+
+.counter-green .degree{
+	background-image: url('../img/orders/counter-green.png');
+}
+.counter-red .degree{
+	background-image: url('../img/orders/counter-red.png');
+}
+
+tr.forsubheader td
+{
+	vertical-align: middle;
+}
+
+table.subheader
+{
+	color: #a1a1a1;
+	font-size: 8pt;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+table.subheader td
+{
+	height: 33px;
+	vertical-align: middle;
+	text-align: center;
+	border: solid 1px #373737;
+	border-left-width: 0px;
+	color: white;
+}
+
+.scroll{
+    height: 500px;
+    overflow: auto;
+    width: 804px;
+	float: left;		
+}
+
+div.row, div.row2
+{
+    background-repeat: no-repeat;
+	background-position: 4px center;
+    background-image: url('../img/orders/gray-box-row.png');
+}
+div.car
+{
+	height: 124px;
+}
+
+div.row div.smog, div.row2 div.smog
+{
+    background-repeat: repeat-y;
+	background-position: 277px top;
+    background-image: url('../img/orders/smog.png');
+}
+
+div.box
+{
+	background-repeat: no-repeat;
+	background-image: url('../img/orders/box-on-palette.png');
+}
+
+div.problem div.red
+{
+    background-repeat: repeat-y;
+    background-image: url('../img/orders/red.png');
+}
+
+div.row div.only-group
+{
+    background-repeat: no-repeat;
+    background-image: url('../img/orders/white-square.png');
+}
+
+div.row div.left-bottom-group
+{
+    background-repeat: no-repeat;
+
+    background-image: url('../img/orders/white-square.png');
+}
+
+div.row div.right-bottom-group
+{
+    background-repeat: no-repeat;
+    background-image: url('../img/orders/white-square.png');
+}
+
+div.row div.top-group
+{
+    background-repeat: no-repeat;
+    background-image: url('../img/orders/white-square.png');
+}
+
+div.row div.car
+{
+    background-repeat: no-repeat;
+	background-position: 281px 29px;
+}
+
+.podgotovka div.box
+{
+	background-position: 8px 18px;
+}
+
+.podgotovka div.red
+{
+	background-position: -378px top;
+}
+
+.podgotovka div.only-group
+{
+	background-position: 31px 58px;
+}
+
+.podgotovka div.left-bottom-group
+{
+	background-position: 11px 58px;
+}
+
+.podgotovka div.right-bottom-group
+{
+	background-position: 49px 58px;
+}
+
+.podgotovka div.top-group
+{
+	background-position: 31px 23px;
+}
+
+.s4et div.box
+{
+	background-position: 101px 18px;
+}
+
+.s4et div.red
+{
+	background-position: -294px top;
+}
+
+.s4et div.only-group
+{
+	background-position: 124px 58px;
+}
+
+.s4et div.left-bottom-group
+{
+	background-position: 104px 58px;
+}
+
+.s4et div.right-bottom-group
+{
+	background-position: 142px 58px;
+}
+
+.s4et div.top-group
+{
+	background-position: 124px 23px;
+}
+
+.otgruzka div.red
+{
+	background-position: -210px top;
+}
+
+.otgruzka div.only-group
+{
+	background-position: 212px 58px;
+}
+
+.otgruzka div.left-bottom-group
+{
+	background-position:195px 58px;
+}
+
+.otgruzka div.right-bottom-group
+{
+	background-position: 232px 58px;
+}
+
+.otgruzka div.top-group
+{
+	background-position: 213px 23px;
+}
+
+.otgruzka div.box
+{
+background-position:191px 18px;
+}
+
+.podbor div.box
+{
+	background-position:285px 8px;
+}
+
+.podbor div.red
+{
+	background-position: -110px top;
+}
+
+.podbor div.only-group
+{
+	background-position: 308px 46px;
+}
+
+.podbor div.left-bottom-group
+{
+	background-position: 289px 46px;
+}
+
+.podbor div.right-bottom-group
+{
+	background-position: 326px 46px;
+}
+
+.podbor div.top-group
+{
+	background-position: 308px 11px;
+}
+
+.podbor div.car
+{
+    background-image: url('../img/orders/track-active.png');
+}
+
+.transportirovka div.box
+{
+	background-position: 375px 8px;
+}
+
+.transportirovka div.red
+{
+	background-position: -40px top;
+}
+
+.transportirovka div.only-group
+{
+	background-position: 398px 46px;
+}
+
+.transportirovka div.left-bottom-group
+{
+	background-position: 379px 46px;
+}
+
+.transportirovka div.right-bottom-group
+{
+	background-position: 416px 46px;
+}
+
+.transportirovka div.top-group
+{
+	background-position: 398px 11px;
+}
+
+.transportirovka div.car
+{
+    background-image: url('../img/orders/track-active.png');
+}
+
+.polu4en div.box
+{
+	background-position: 525px 17px;
+}
+
+.polu4en div.red
+{
+	background-position: 75px top;
+}
+
+.polu4en div.only-group
+{
+	background-position: 547px 57px;
+}
+
+.polu4en div.left-bottom-group
+{
+	background-position: 529px 57px;
+}
+
+.polu4en div.right-bottom-group
+{
+	background-position: 566px 57px;
+}
+
+.polu4en div.top-group
+{
+	background-position: 547px 19px;
+}
+
+.opla4en div.box
+{
+	background-position: 615px 17px;
+}
+
+.opla4en div.red
+{
+	background-position: 183px top;
+}
+
+.opla4en div.only-group
+{
+	background-position: 637px 57px;
+}
+
+.opla4en div.left-bottom-group
+{
+	background-position: 619px 57px;
+}
+
+.opla4en div.right-bottom-group
+{
+	background-position: 656px 57px;
+}
+
+.opla4en div.top-group
+{
+	background-position: 637px 21px;
+}
+
+.zakrytie div.box
+{
+	background-position: 707px 17px;
+}
+
+.zakrytie div.red
+{
+	background-position: 275px top;
+}
+
+.zakrytie div.only-group
+{
+	background-position: 730px 57px;
+}
+
+.zakrytie div.left-bottom-group
+{
+	background-position: 711px 57px;
+}
+
+.zakrytie div.right-bottom-group
+{
+	background-position: 748px 57px;
+}
+
+.zakrytie div.top-group
+{
+	background-position: 730px 21px;
+}

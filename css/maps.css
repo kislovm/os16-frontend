@@ -1,0 +1,84 @@
+#main{
+	float: right;
+}
+
+.kolonka{
+	float: left;
+	width: 240px;
+	height: 620px;
+	background-repeat: repeat-x;
+	background-position: left center;
+	background-image: url(../img/ls/podsvetka.png);
+	margin: 10px;
+}
+
+.kolonkaW{
+	float: left;
+	width: 400px;
+	height: 620px;
+	background-repeat: repeat-x;
+	background-position: left center;
+	background-image: url(../img/ls/podsvetka.png);
+	margin: 10px;
+}
+
+.kolonka div.yarlyk{
+	width: 184px;
+	height: 154px;
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.kolonka div.red{
+	border: solid 1px red;
+	box-shadow: 0px 0px 15px red;
+}
+
+.kolonkaW div.yarlyk{
+	width: 400px;
+	height: 450px;
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-align: center;
+		margin-top: 10px;
+	background-image: url(../img/ls/map.png);
+}
+
+div.yarlyk img{
+	margin-top: 9px;
+	max-width: 178px;
+	max-height: 118px;
+}
+
+.message{
+	padding-top: 10px;
+	font-weight:bold;
+}
+
+
+#rost{
+	background-image: url(../img/ls/rost.png);
+}
+
+.logo {
+	background-image: url(../img/ls/logo.png);
+	height: 100px;
+}
+
+.header {
+	text-shadow: black 1px 1px 2px;
+	color: white;
+	font-weight:bold;
+	font-size: 20px;
+}
+
+#map {
+	margin-left: 40px;
+	padding-top: 33px;
+	width: 320px;
+	height: 384px;
+}

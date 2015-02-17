@@ -1,0 +1,211 @@
+#main{
+	float: right;
+}
+
+.kolonka{
+	float: left;
+	width: 242px;
+	height: 597px;
+	background-repeat: repeat-x;
+	background-position: left center;
+	background-image: url(../img/ls/podlozhka_vert.png);
+	margin: 10px;
+}
+
+.kolonka div.yarlyk{
+	width: 184px;
+	height: 154px;
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin-top: 30px;
+	text-align: center;
+}
+
+.kolonka div.red{
+	border: solid 3px #cd444d;
+	box-shadow: 0px 0px 20px #cd444d;
+}
+
+.text{
+	padding-top: 10px;
+}
+
+#periodichnost{
+	background-image: url(../img/ls/periodichnost.png);
+}
+
+#periodichnost.red{
+	background-image: url(../img/ls/periodichnost-red.png);
+}
+
+#gruppy{
+	background-image: url(../img/ls/gruppy.png);
+}
+
+#gruppy.red{
+	background-image: url(../img/ls/gruppy-red.png);
+}
+
+#otsrochka{
+	background-image: url(../img/ls/otsrochka.png);
+}
+
+#otsrochka.red{
+	background-image: url(../img/ls/otsrochka-red.png);
+}
+
+#rost{
+	background-image: url(../img/ls/rost.png);
+}
+
+#rost.red{
+	background-image: url(../img/ls/rost-red.png);
+}
+
+#bonusy{
+	background-image: url(../img/ls/bonusy.png);
+}
+
+#bonusy.red{
+	background-image: url(../img/ls/bonusy-red.png);
+}
+
+#kredit{
+	background-image: url(../img/ls/kredit.png);
+}
+
+#kredit.red{
+	background-image: url(../img/ls/kredit-red.png);
+}
+
+#zapas{
+	background-image: url(../img/ls/zapas.png);
+}
+
+#zapas.red{
+	background-image: url(../img/ls/zapas-red.png);
+}
+
+#konsignacia{
+	background-image: url(../img/ls/konsignacia.png);
+}
+
+#konsignacia.red{
+	background-image: url(../img/ls/konsignacia-red.png);
+}
+
+#ruller-separator{
+	clear: both;
+	height: 1px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url(../img/ls/ruller-separator.png);
+}
+
+#payment-ruller-fon{
+	clear: both;
+        height: 151px;
+	background-repeat: repeat-y;
+	background-position: center top;
+	background-image: url(../img/ls/podlozhka_timeline.png);
+	color: white;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 20px;
+}
+
+#payment-ruller{
+	clear: both;
+	height: 100px;
+	background-repeat: repeat-x;
+	background-position: center 38px;
+	background-image: url(../img/ls/ruller.png);
+	color: white;
+	padding: 0px;
+	margin: 0px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+#payment-ruller .past{
+        background-image: url(../img/ls/h
+        andler_red.png);
+}
+
+#payment-ruller .past .tooltip{
+        background-image: url(../img/ls/timeline_red.png);
+}
+
+#payment-ruller .green{
+	background-image: url(../img/ls/handler_green.png);
+}
+
+#payment-ruller .green .tooltip{
+	background-image: url(../img/ls/timeline_green.png);
+}
+
+#payment-ruller .gray{
+	background-image: url(../img/ls/handler_gray.png);
+}
+
+#payment-ruller .gray .tooltip{
+	background-image: url(../img/ls/timeline_gray.png);
+}
+
+#payment-ruller .today{
+	background-image: url(../img/ls/handler_today.png);
+	background-position: center 31px;
+}
+
+.ruller-point{
+	font-size: 10pt;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center 35px;
+	margin: 0px;
+	padding: 0px;
+	width: 120px;
+	height: 95px;
+}
+
+.ruller-point div{
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+}
+
+.ruller-point img{
+	width: 120px;
+	height: 1px;
+}
+
+.distance img, .ruller-point img{
+	width: 120px;
+	height: 1px;
+}
+
+.ruller-point .date{
+	margin-top: 25px;
+        font-size: 10pt;
+        font-weight: bold;
+}
+
+.ruller-point .tooltip{
+    width: 123px;
+    font-weight: bold;
+    font-size: 10pt;
+    height: 30px;
+    text-align: center;
+    padding-top: 6px;
+    background-position: 3px top;
+    background-repeat: no-repeat;
+}
+
+.grafik_header{
+    padding: 15px;
+    font-weight: bold;
+    font-size: 12pt;
+    color: #b5b5b5;
+    text-shadow: 1px 1px #222;
+}
