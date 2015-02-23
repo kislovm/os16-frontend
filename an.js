@@ -2,6 +2,7 @@ try {
 
 AN = function() {
 
+    a = require('./jade/new-order.jade');
 
     function notImplemented(e) {
         e.preventDefault();
