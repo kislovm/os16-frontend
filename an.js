@@ -15,12 +15,6 @@ try {
             this.unbind();
         };
 
-        Backbone.Model.prototype.validate = function(attribute) {
-            //console.log(attribute);
-            //	if (attribute.error) alert(attribute.error);
-            //return false;
-        };
-
         Date.prototype.getFullMonth = function() {
             var month = (this.getMonth() + 1).toString();
             return month.length > 1 ? month : "0" + month;
@@ -34,13 +28,13 @@ try {
 
         var loadjscssfile = function(filename, filetype) {
             if (filetype == "js") { //if filename is a external JavaScript file
-                var fileref = document.createElement('script')
-                fileref.setAttribute("type", "text/javascript")
+                var fileref = document.createElement('script');
+                fileref.setAttribute("type", "text/javascript");
                 fileref.setAttribute("src", filename)
             } else if (filetype == "css") { //if filename is an external CSS file
-                var fileref = document.createElement("link")
-                fileref.setAttribute("rel", "stylesheet")
-                fileref.setAttribute("type", "text/css")
+                var fileref = document.createElement("link");
+                fileref.setAttribute("rel", "stylesheet");
+                fileref.setAttribute("type", "text/css");
                 fileref.setAttribute("href", filename)
             }
             if (typeof fileref != "undefined") document.getElementsByTagName("head")[0].appendChild(fileref)
