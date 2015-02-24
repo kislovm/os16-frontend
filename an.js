@@ -88,6 +88,7 @@ try {
 
             //Дальше идут методы, которые описывают что делать при смене пути. При смене пути создается соответсвующее view, вызывается его рендер
             start: function() {
+                console.log(1);
                 GLOBAL.trigger('closePopups');
                 $('#ruller-separator').remove();
                 $('#payment-ruller-fon').remove();
@@ -147,7 +148,8 @@ try {
                 new PanelView({
                     collection: this.panel, el: element
                 });
-                if (this.timeline == undefined) this.timeline = new TimelineView(); else this.timeline.render();
+                if (this.timeline == undefined) this.timeline = new TimelineView();
+                else this.timeline.render();
             },
 
             order: function(orderId) {
@@ -1149,13 +1151,13 @@ try {
                                 return;
                             }
 
-                            if (that.model.get('orderId') ==
-                                0 &&
-                                data.orderId !=
-                                undefined &&
-                                that.model.get('orderId') !=
-                                data.orderId) window.location.hash = '#order/' + data.orderId else that.model.fetch() &&
-                            alert('Товар добавлен');
+                            if (that.model.get('orderId') == 0 &&
+                                    data.orderId != undefined && that.model.get('orderId') != data.orderId)
+                                window.location.hash = '#order/' + data.orderId;
+
+                            else
+                                that.model.fetch() &&
+                                    alert('Товар добавлен');
                         },
                         'json');
                 } else if (this.item.get('itemId') != undefined) {
