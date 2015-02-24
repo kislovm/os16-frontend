@@ -1,2 +1,5 @@
-require('./an.js');
-AN.init();
+$(function() {
+    require('./an.js');
+    AN.init();
+});
+

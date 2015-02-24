@@ -82,7 +82,6 @@ try {
 
             //Дальше идут методы, которые описывают что делать при смене пути. При смене пути создается соответсвующее view, вызывается его рендер
             start: function() {
-                console.log(1);
                 GLOBAL.trigger('closePopups');
                 $('#ruller-separator').remove();
                 $('#payment-ruller-fon').remove();
@@ -921,7 +920,6 @@ try {
             },
 
             render: function() { //Вызывается его рендер, в элемент вставляется рендер всех элементов коллекции и рендер модели этого view
-                var that = this;
                 $(this.el).html(this._template(this.model.toJSON()));
                 _(this._orderViews).each(function(order) {
                     this.$el.append(order.render().html);
