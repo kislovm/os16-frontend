@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     browserify = require('browserify');
 
 
-var bundler = watchify(browserify('./an.js', watchify.args));
+var bundler = watchify(browserify('./app.js', watchify.args));
 // add any other browserify options or transforms here
 bundler.transform(require('browserify-jade').jade({
     pretty: false
@@ -45,7 +45,7 @@ gulp.task('templates', function() {
 gulp.task('dev', function() {
     gulp.run('templates');
 
-    gulp.src(['./dist/bundle.js', './jst.js'])
+    gulp.src(['./dist/bundle.js'])
         .pipe(concat('index.js'))
         .pipe(gulp.dest('./js'))
 });
