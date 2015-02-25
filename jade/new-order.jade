@@ -1,97 +1,76 @@
-doctype
-html.no-js
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        title
-        link(rel='stylesheet', href='/static//css/new-order.css')
-    body
-        div.new-order
-            div.new-order__part
-                p.new-order__head
-                    span.new-order__header Шаг 1
-                    span.new-order__sub-header Загрузка остатков
-                    a.new-order__back Отмена
-                hr
-                p Для создания нового черновика заказа, загрузите остатки по складу, на текущий момент.
-                p Это нужно для формирования персонального заказа, основанного на ваших потребностях.
-                p Файл с остатками должен быть в формате xls или xlsx
-                p Вы можете скачать файл с примером по&nbsp;
-                    a(href='/iiii') ссылке
+div.new-order
+    div.new-order__part.new-order__upload-file
+    div.new-order__part
+        div.new-order__paranja
+        p.new-order__head
+            span.new-order__header Шаг 2
+            span.new-order__sub-header Установка соответствий
+            a.new-order__back Назад
+        hr
+        p Мы не смогли найти некоторые товары в нашей базе.
+        p Для продолжения создания заказа нужно установить соответствия ваших наименований товаров с нашими, это нужно сделать в таблице ниже
+        table
+            thead
+                th Клиент
+                th Allied Nippon
+                th
+            tr
+                td Диски 123
+                td Диски 245
+                td
+                    a
+                        img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
+            tr
+                td Диски 123
+                td Диски 245
+                td
+                    a
+                        img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
+            tr
+                td Диски 123
+                td Диски 245
+                td
+                    a
+                        img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
+            tr
+                td Диски 123
+                td Диски 245
+                td
+                    a
+                        img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
+            tr
+                td Диски 123
+                td Диски 245
+                td
+                    a
+                        img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
 
-                p
-                    input(type='file')
-                    input(type='button', value='Загрузить')
-
-            div.new-order__part
-                p.new-order__head
-                    span.new-order__header Шаг 2
-                    span.new-order__sub-header Установка соответствий
-                    a.new-order__back Назад
-                hr
-                p Мы не смогли найти некоторые товары в нашей базе.
-                p Для продолжения создания заказа нужно установить соответствия ваших наименований товаров с нашими, это нужно сделать в таблице ниже
-                table
-                    thead
-                        th Клиент
-                        th Allied Nippon
-                        th
-                    tr
-                        td Диски 123
-                        td Диски 245
-                        td
-                            a
-                                img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-                    tr
-                        td Диски 123
-                        td Диски 245
-                        td
-                            a
-                                img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-                    tr
-                        td Диски 123
-                        td Диски 245
-                        td
-                            a
-                                img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-                    tr
-                        td Диски 123
-                        td Диски 245
-                        td
-                            a
-                                img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-                    tr
-                        td Диски 123
-                        td Диски 245
-                        td
-                            a
-                                img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-
-                p
-                    input(type='button', value='Сохранить').new-order__save-naming
+        p
+            input(type='button', value='Сохранить').new-order__save-naming
 
 
-            div.new-order__part
-                p.new-order__head
-                    span.new-order__header Шаг 3
-                    span.new-order__sub-header Подтверждение заказа
-                    a.new-order__back Назад
-                hr
-                p Заказ был успешно сформирован на основании загруженных ваши остатков по складу.
-                p На этом шаге вы можете ознакомится с общей информацией о заказе.
-                p
-                    table
-                        tr
-                            td Сумма заказа
-                            td 100000 р.
-                        tr
-                            td Вес заказа
-                            td 1000 кг.
-                        tr
-                            td Итого в у.е.
-                            td 15000
-                        tr
-                            td Скидка
-                            td Отсутствует
-                p Для того, чтобы заказ был создан потребуется ваше подтверждение.
-                input(type='button', value='Создать заказ').new-order__save-order
+    div.new-order__part
+        div.new-order__paranja
+        p.new-order__head
+            span.new-order__header Шаг 3
+            span.new-order__sub-header Подтверждение заказа
+            a.new-order__back Назад
+        hr
+        p Заказ был успешно сформирован на основании загруженных ваши остатков по складу.
+        p На этом шаге вы можете ознакомится с общей информацией о заказе.
+        p
+            table
+                tr
+                    td Сумма заказа
+                    td 100000 р.
+                tr
+                    td Вес заказа
+                    td 1000 кг.
+                tr
+                    td Итого в у.е.
+                    td 15000
+                tr
+                    td Скидка
+                    td Отсутствует
+        p Для того, чтобы заказ был создан потребуется ваше подтверждение.
+        input(type='button', value='Создать заказ').new-order__save-order

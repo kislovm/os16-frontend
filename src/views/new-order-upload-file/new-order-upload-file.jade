@@ -1,0 +1,18 @@
+div.new-order__paranja
+p.new-order__head
+    span.new-order__header Шаг 1
+    span.new-order__sub-header Загрузка остатков
+    a.new-order__back(href='/#') Отмена
+hr
+p Для создания нового черновика заказа, загрузите остатки по вашему складу, на текущий момент.
+p Это нужно для формирования персонального заказа, основанного на остатках по вашему складу и ваших предыдущих заказах.
+p Файл с остатками должен быть в формате xls или xlsx и содержать 2 стоблца: наименование товара и его количество на вашем складе
+p Вы можете скачать пример файла по&nbsp;
+    a(href='/static/stock_balance.xls') ссылке
+
+p.new-order__error
+p.new-order__upload-trobber Идет загрузка файла...
+
+form.new-order__file-upload-form(method='POST', enctype='multipart/form-data', action='/test/')
+    input.new-order__file-upload-input(type='file', name='file')
+    input.new-order__file-upload-button(type='submit', value='Загрузить', disabled='disabled')

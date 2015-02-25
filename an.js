@@ -69,7 +69,12 @@ try {
                 "call": "call",
                 "settings": "settings",
                 "account": "account",
-                "archive": "archive"
+                "archive": "archive",
+                "new-order": "new-order"
+            },
+
+            "new-order": function() {
+                this.newOrderView = new NewOrderView({ el: element });
             },
 
             initialize: function() { // Вызывается при его инициализации.
@@ -472,7 +477,8 @@ try {
                 this.$el.find('.product-naming__xls-form').ajaxSubmit({
                     success: function(data) {
                         if (data.error) alert(data.error); else _this.collection.set(data);
-                    }, dataType: 'json'
+                    },
+                    dataType: 'json'
                 });
             },
 
@@ -1831,6 +1837,8 @@ try {
             }
         }
     }();
+
+    var NewOrderView = require('./src/views/new-order.js')
 
 } catch (e) {
     alert('В программе произошла ошибка. Пожалуйста, перезагрузите страницу с приложением.')
