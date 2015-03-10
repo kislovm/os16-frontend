@@ -9,9 +9,15 @@ module.exports = Backbone.View.extend({
 
         this.collection.on('add', this.onAdd, this);
 
-        this.collection.fetch();
+        this.fetchData();
+    },
 
-        setInterval(function() { that.collection.fetch() }, 5000);
+    fetchData: function() {
+        var that = this;
+
+        this.collection.fetch().success(function() {
+            setInterval(that.fetchData(), 5000);
+        })
     },
 
     onAdd: function(message) {
