@@ -3,8 +3,6 @@ var MessageView = require('../message/message-view.js');
 module.exports = Backbone.View.extend({
 
     initialize: function() {
-        var that = this;
-
         this.messageViews = [];
 
         this.collection.on('add', this.onAdd, this);
