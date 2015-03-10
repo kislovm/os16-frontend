@@ -555,6 +555,7 @@ window.JST['chat'] = _.template(
 
 window.JST['message'] = _.template(
     '<div class="message chat_message <% if(!direction) {%> message_from_client <% } %>">' +
+        '<% if(direction && is_read) {%><div class="message__read ">Прочитано</div><% } %>' +
         '<div class="message__sender"><%= username %></div>' +
         '<div class="message__time"><%= date %></div>' +
         '<div class="message__body"><%= text %></div>' +
