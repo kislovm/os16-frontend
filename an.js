@@ -603,6 +603,7 @@ try {
                 this.groupModel = new Backbone.Model();
                 this.itemsModel = new Backbone.Model();
                 this.itemModel = data.params.itemModel;
+                this.orderId = data.params.orderId;
                 this.model.fetch();
                 this.model.on('change', this.render, this);
                 this.groupModel.on('change', this.render, this);
@@ -1168,7 +1169,8 @@ try {
                 } else if (this.item.get('group') != undefined) {
                     this.addView_ = new OrderformingAddView_({
                         item: this.item, model: new ItemListModel({
-                            group: this.item.get('group'), searchString: "Поиск по названию"
+                            group: this.item.get('group'), searchString: "Поиск по названию",
+                            orderId: this.model.get('orderId')
                         })
                     });
                     $('#leftpage', $(this.el)).append($(this.addView_.el));
@@ -1440,7 +1442,7 @@ try {
 
         var ItemListModel = Backbone.Model.extend({
             initialize: function() {
-                this.url = '/group/' + this.get('group') + '/';
+                this.url = '/group/' + this.get('group') + '/' + this.get('orderId') + '/';
             }
         });
 
