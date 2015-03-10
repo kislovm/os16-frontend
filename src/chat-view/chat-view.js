@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
         'submit .chat__replyform': '_onMessageSend',
         'click .chat__send-message': '_onMessageSend',
         'click .chat__back-btn': '_onBack',
-        'keypress .chat__replyform>textarea': '_onKeyPress'
+        'keypress .chat__replyform > textarea': '_onKeyPress'
     },
 
     _onBack: function() {
