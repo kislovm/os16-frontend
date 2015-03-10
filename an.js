@@ -1,4 +1,4 @@
-try {
+//try {
 
     AN = function() {
 
@@ -242,10 +242,9 @@ try {
                 removejscssfile("/static/css/orderforming.css", "css");
 
                 new ChatView({
-                    el: element, model: new ChatModel({
-                        orderId: orderId
-                    })
-                })
+                    el: element,
+                    orderId: orderId
+                });
 
             },
 
@@ -646,214 +645,7 @@ try {
 
         });
 
-
-        var ChatModel = Backbone.Model.extend({
-            defaults: {
-                orderId: 0
-            }
-        });
-
-        var ChatView = Backbone.View.extend({
-
-            _template: JST['chat'],
-
-            events: {
-                'submit .chat__replyform': '_onMessageSend',
-                'click .chat__send-message': '_onMessageSend',
-                'click .chat__back-btn': '_onBack',
-                'keypress .chat__replyform>textarea': '_onKeyPress'
-            },
-
-            _onBack: function() {
-                Backbone.history.history.back()
-            },
-
-            _onKeyPress: function(e) {
-                e.keyCode == 13 && this._onMessageSend(e);
-            },
-
-            _onMessageSend: function(e) {
-                if (this._sendingNow) return;
-                e.preventDefault();
-
-                var that = this;
-
-                this.textarea.prop('disabled', 'yes');
-                this._sendingNow = true;
-
-                this.form.ajaxSubmit({
-                    data: {text: that.textarea.val()}, success: function() {
-                        that.messagesView.collection.fetch();
-                        that.textarea.val('').prop('disabled', '');
-                        that._sendingNow = false;
-                    }, error: function() {
-                        that.messagesView.collection.fetch();
-                        that.textarea.prop('disabled', '');
-                        that._sendingNow = false;
-                        alert('Отправка сообщения не удалась. Пожалуйста, попробуйте еще раз.')
-                    }
-                });
-            },
-
-            model: ChatModel,
-
-            initialize: function() {
-                var _this = this;
-                $.get('/order/' + this.model.get('orderId'), function(data) {
-                    _this.$el.find('.chat__header').text('Обсуждение по заказу от: ' + data.date);
-                }, 'json');
-                orderId = this.model.get('orderId');
-                this.render();
-            },
-
-            render: function() {
-                this.$el.html(this._template(this.model.toJSON()));
-
-                this.form = this.$el.find('.chat__replyform');
-                this.textarea = this.$el.find('textarea');
-
-                this.messagesView = new MessagesView({
-                        el: this.$el.find('.chat__window'),
-                        collection: new MessagesCollection([], {orderId: this.model.get('orderId')})
-                    });
-
-                this.callsView = new CallsView({
-                        el: this.$el.find('.chat__calls'),
-                        collection: new CallsCollection([], {orderId: this.model.get('orderId')})
-                    });
-            }
-
-        });
-
-        var MessagesView = Backbone.View.extend({
-
-            collection: MessagesCollection,
-
-            initialize: function() {
-                var that = this;
-
-                this.messageViews = [];
-
-                this.collection.on('add', this.onAdd, this);
-
-                this.collection.fetch();
-
-                setInterval(function() { that.collection.fetch() }, 5000);
-            },
-
-            onAdd: function(message) {
-                var messageHolder = $('<div class="chat__message">');
-                this.messageViews.push(new MessageView({el: messageHolder[0], model: message}));
-                this.$el.prepend(messageHolder);
-
-            }
-
-        });
-
-        var MessageView = Backbone.View.extend({
-
-            model: MessageModel,
-
-            _template: JST['message'],
-
-            initialize: function() {
-                this.render();
-            },
-
-            render: function() {
-                this.$el.html(this._template(this.model.toJSON()));
-            }
-        });
-
-        var MessageModel = Backbone.Model.extend();
-
-        var MessagesCollection = Backbone.Collection.extend({
-            model: MessageModel,
-
-            initialize: function(data, options) {
-                this.url = '/order/' + options.orderId + '/messages/';
-            }
-        });
-
-        var CallsView = MessagesView.extend({
-
-            events: {
-                'click .calls__show-button': 'toggleCalls'
-            },
-
-            toggleCalls: function() {
-                this.$el.find('.calls__list').slideToggle();
-            },
-
-            collection: CallsCollection,
-
-            onAdd: function(message) {
-                var messageHolder = $('<div class="calls__call">');
-                this.messageViews = (new CallView({el: messageHolder[0], model: message}));
-                this.$el.find('.calls__list').prepend(messageHolder);
-
-            }
-
-        });
-
-        var CallView = MessageView.extend({
-            model: Backbone.Model,
-
-            _template: JST['call']
-        });
-
-        var CallModel = Backbone.Model.extend({
-
-            defaults: {
-                call_date: 1
-            },
-
-            set: function(key, value, options) {
-                // Normalize the key-value into an object
-                if (_.isObject(key) || key == null) {
-                    attrs = key;
-                    options = value;
-                } else {
-                    attrs = {};
-                    attrs[key] = value;
-                }
-
-                // Go over all the set attributes and make your changes
-                for (attr in attrs) {
-                    if (attr == 'call_duration') {
-                        var callDuration = attrs['call_duration'];
-
-                        attrs['call_duration'] =
-                            callDuration ==
-                            0 ?
-                            callDuration +
-                            ' секунд' :
-                                callDuration ==
-                                1 ||
-                                callDuration >
-                                4 ?
-                                callDuration /
-                                60 +
-                                ' минут' :
-                                callDuration /
-                                60 +
-                                ' минуты';
-
-                    }
-                }
-
-                return Backbone.Model.prototype.set.call(this, attrs, options);
-            }
-
-        });
-
-        var CallsCollection = Backbone.Collection.extend({
-            model: CallModel,
-
-            initialize: function(data, options) {
-                this.url = '/call/log/' + options.orderId + '/';
-            }
-        })
+        var ChatView = require('./src/chat-view/chat-view.js');
 
         var Order = Backbone.Model.extend({ //Модель. Все что у неё есть это список стандартных параметров.
             defaults: {
@@ -1842,6 +1634,6 @@ try {
 
     var NewOrderView = require('./src/views/new-order.js')
 
-} catch (e) {
-    alert('В программе произошла ошибка. Пожалуйста, перезагрузите страницу с приложением.')
-}
+//} catch (e) {
+//    alert('В программе произошла ошибка. Пожалуйста, перезагрузите страницу с приложением.')
+//}
