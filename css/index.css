@@ -1041,6 +1041,7 @@ a {
     position: relative;
     margin-bottom: 50px;
     border-bottom: 1px solid #ccc;
+    padding: 10px;
 }
 
 .new-order__head {
@@ -1111,14 +1112,9 @@ a {
     color: #f33;
 }
 
-.new-order__part.disabled .new-order__paranja {
-    position: absolute;
-    top: -31px;
-    left: -21px;
-    height: 123%;
-    width: 106.99%;
-    background: rgba(0,0,0,.7);
-    z-index: 999;
+.new-order__part.disabled .new-order__content,
+.new-order__part.disabled .new-order__back {
+    display: none;
 }
 
 .new-order__upload-trobber {

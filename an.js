@@ -74,6 +74,13 @@
             },
 
             "new-order": function() {
+                GLOBAL.trigger('closePopups');
+                $('#ruller-separator').remove();
+                $('#payment-ruller-fon').remove();
+                removejscssfile("/static/css/orderforming.css", "css");
+                removejscssfile("/static/css/ls.css", "css");
+                loadjscssfile("/static/css/order.css", "css");
+
                 this.newOrderView = new NewOrderView({ el: element });
             },
 

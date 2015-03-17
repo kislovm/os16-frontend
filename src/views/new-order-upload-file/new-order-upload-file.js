@@ -24,9 +24,10 @@ module.exports = Backbone.View.extend({
 
         e.preventDefault();
 
-        this._onUploadStart();
-
         this._fileUploadForm.ajaxSubmit({
+            beforeSubmit: function() {
+                _this._onUploadStart();
+            },
             success: function(data) {
                 if (data.error)
                     _this._showError(data.error);
@@ -76,7 +77,15 @@ module.exports = Backbone.View.extend({
     },
 
     _toggleDisabled: function() {
-       this.$el.toggleClass('disabled', this.model.get('uploaded'));
+        var content = this.$el.find('.new-order__content'),
+            disabled = this._isDisabled();
+
+        disabled ? content.slideUp() : content.slideDown();
+        this.$el.toggleClass('disabled', disabled);
+    },
+
+    _isDisabled: function() {
+        return this.model.get('uploaded')
     },
 
     render: function() {
