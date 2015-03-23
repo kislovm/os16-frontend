@@ -24,7 +24,7 @@
             return [this.getDate(), this.getFullMonth(), this.getFullYear()].join('.');
         };
 
-        var GLOBAL = new Backbone.Model();
+        GLOBAL = new Backbone.Model();
 
         var loadjscssfile = function(filename, filetype) {
             if (filetype == "js") { //if filename is a external JavaScript file
@@ -565,11 +565,11 @@
 
         });
 
-        var SelectPositionModel = Backbone.Model.extend({
+        SelectPositionModel = Backbone.Model.extend({
             url: 'http://django.os16.net/categorys/'
         });
 
-        var SelectPositionView = Backbone.View.extend({
+        SelectPositionView = Backbone.View.extend({
 
             events: {
                 'change .category-select': '_onCategoryChange',

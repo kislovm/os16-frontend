@@ -11,36 +11,13 @@ div.new-order__content
             th Клиент
             th Allied Nippon
             th
-        tr
-            td Диски 123
-            td Диски 245
-            td
-                a
-                    img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-        tr
-            td Диски 123
-            td Диски 245
-            td
-                a
-                    img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-        tr
-            td Диски 123
-            td Диски 245
-            td
-                a
-                    img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-        tr
-            td Диски 123
-            td Диски 245
-            td
-                a
-                    img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
-        tr
-            td Диски 123
-            td Диски 245
-            td
-                a
-                    img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
+        each product in products
+            tr
+                td= product.product_name
+                td= product.client_product_name
+                td
+                    a.new-order__naming-edit(data-model-id= product.id)
+                        img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
 
     p
         input(type='button', value='Сохранить').new-order__save-naming

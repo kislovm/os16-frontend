@@ -11,7 +11,10 @@ div.new-order__content
         a(href='/static/stock_balance.xls') ссылке
 
     p.new-order__error
-    p.new-order__upload-trobber Идет загрузка файла...
+    div.new-order__upload-trobber
+        span Идет загрузка файла...
+        div.progress-bar.blue.stripes
+            span(style="width:100%")
 
     form.new-order__file-upload-form(method='POST', enctype='multipart/form-data', action='/new-order/')
         input.new-order__file-upload-input(type='file', name='file')

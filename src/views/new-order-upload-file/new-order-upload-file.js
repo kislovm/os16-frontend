@@ -31,8 +31,10 @@ module.exports = Backbone.View.extend({
             success: function(data) {
                 if (data.error)
                     _this._showError(data.error);
-                else
+                else {
                     _this.model.set('uploaded', true);
+                    _this.model.set('products', data.data);
+                }
                 _this._onUploadFinish();
             },
             error: function() {
@@ -80,7 +82,10 @@ module.exports = Backbone.View.extend({
         var content = this.$el.find('.new-order__content'),
             disabled = this._isDisabled();
 
-        disabled ? content.slideUp() : content.slideDown();
+        disabled ?
+            content.slideUp() :
+            content.slideDown();
+
         this.$el.toggleClass('disabled', disabled);
     },
 
