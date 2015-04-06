@@ -60,7 +60,6 @@
                 "": "start",
                 "new_order": "new_order",
                 "new_order/edit": "new_order_edit",
-                "load_backorder": "load_backorder",
                 "backorder": "backorder",
                 "order/:order_id": "order",
                 "order/:order_id/payments": "payments",
@@ -264,7 +263,7 @@
                     var orderId = data.result, confirm;
 
                     if (!orderId) {
-                        that.navigate('load_backorder', {trigger: true});
+                        that.navigate('new-order', {trigger: true});
                         return;
                     } else {
                         confirm = $.cookie('saved') == '1' ? new OrderSavedConfirm : new OrderAutomaticalySavedConfirm;
@@ -298,7 +297,7 @@
                 $.post('/order/new/', function(data) {
                     var orderId = data.result;
 
-                    if (!orderId) that.navigate('load_backorder', {trigger: true});
+                    if (!orderId) that.navigate('new-order', {trigger: true});
 
                     $.cookie('saved', 0);
 
@@ -307,17 +306,6 @@
                     });
 
                 }, 'json');
-            },
-
-            load_backorder: function() {
-                var that = this;
-                GLOBAL.trigger('closePopups');
-                $.post('/order/new/', function(data) {
-                    var orderId = data.result;
-                    if (orderId) that.navigate('/order/new/', {trigger: true});
-
-                    new Popup({contentView: Backorder});
-                })
             }
 
         });
@@ -419,7 +407,16 @@
 
                 this.collection.on('change', this.render, this);
 
+                this.collection.on('change', this._load, this);
+
                 this._fetchData();
+            },
+
+            _load: function() {
+                $.post('/settings/prodnames/load/',
+                    { products: JSON.stringify(this.collection.toJSON()) },
+                    function(data) { console.log(data); },
+                    'json');
             },
 
 
@@ -503,7 +500,7 @@
                         function(data) {
                             console.log(data);
                         },
-                        'json')
+                        'json');
 
                     $el.find('table input').each(function(i, el) {
                         el = $(el);
@@ -1596,7 +1593,7 @@
             }, _onRightClick: function() {
                 var that = this;
                 $.post('/order/new/delete/', function() {
-                    controller.navigate('load_backorder', {trigger: true});
+                    controller.navigate('new-order', {trigger: true});
                     that.destruct();
                 })
             }
@@ -1613,7 +1610,7 @@
             }, _onRightClick: function() {
                 var that = this;
                 $.post('/order/new/delete/', function() {
-                    controller.navigate('load_backorder', {trigger: true});
+                    controller.navigate('new-order', {trigger: true});
                     that.destruct();
                 })
             }

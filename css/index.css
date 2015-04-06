@@ -1122,8 +1122,26 @@ a {
     display: none;
 }
 
-.new-order__naming-edit {
+.new-order__naming-edit,
+.new-order__naming-delete {
     cursor: pointer;
+}
+
+.new-order__creating-wrapper {
+    display: none;
+    height: 400px;
+    font-size: 3em;
+    line-height: 3em;
+    text-align: center;
+}
+
+
+.new-order__creating .new-order__part {
+    display: none;
+}
+
+.new-order__creating .new-order__creating-wrapper {
+    display: block;
 }
 
 .select-position select {
