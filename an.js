@@ -383,7 +383,6 @@
             collection: new ProductNamingCollection,
 
             events: {
-                'click .product-naming__edit': '_edit',
                 'click .product-naming__save': '_save',
                 'click .product-naming__add-row': '_addRow',
                 'click .product-naming__remove-row': '_removeRow',
@@ -441,39 +440,6 @@
 
             },
 
-            /**
-             * Переводит таблицу в состояние редактируемой
-             */
-            _edit: function() {
-                var _this = this;
-
-                if (confirm('Внимание! После начала редактирования списка, создание новых заказов будет заблокировано, ' +
-                        'Отменить действия будет нельзя!' +
-                        'до утверждения отредактированого списка менедежером! Вы уверены, что хотите отредактировать список?')) {
-                    var $el = this.$el;
-
-                    $.get('/settings/prodnames/clear/', function(data) {
-                        if (data.success) {
-                            $el.find('.product-naming__state').text('Создание новых заказов было заблокировано. ' +
-                            'Для того, чтобы создать новый заказ, отредактируйте таблицу и сохраните изменения. ' +
-                            'После этого дождитесь подтверждения правок со стороны менедежра.');
-
-                            $el.find('.product-naming__controls').html('</br>' +
-                                '<input class="product-naming__add-row" type="button" value="Добавить строку"/>' +
-                                '<form class="product-naming__xls-form" method="POST" enctype="multipart/form-data" action="/settings/prodnames/xls/">' +
-                                '<input type="file" name="file"/>' +
-                                '<input class="product-naming__upload-file" type="button" value="Загрузить XLS"/>' +
-                                '</form>' +
-                                '</br>Редактирование разблокировано ' +
-                                '<input class="product-naming__save" type="button" value="Сохранить"/>');
-
-                            _this.collection.fetch();
-                        } else alert('Что-то пошло не так.')
-                    }, 'json');
-                }
-
-            },
-
             _uploadFile: function() {
                 var _this = this;
 
@@ -489,9 +455,7 @@
              * Переводит таблицу в состояние сохраненной
              */
             _save: function() {
-                if (confirm('Внимание! Редактирование будет заблокировано, а таблица отправлена на утверждение менеджеру. ' +
-                    'Внесение изменений в таблицу или отмена действия будет невозможна. ' +
-                    'Вы уверены, что хотите сохранить таблицу?')) {
+                if (confirm('Вы уверены, что хотите сохранить таблицу?')) {
 
                     var $el = this.$el;
 
@@ -508,10 +472,6 @@
 
                         el.parent().html(val);
                     });
-
-                    //                $el.find('.product-naming__state').text('Таблица была отправлена на утверждение менеджеру. После утверждения таблицы менеджером вы сможете создавать новые заказы.');
-                    //
-                    //                $el.find('.product-naming__controls').html('');
 
                 }
             },
