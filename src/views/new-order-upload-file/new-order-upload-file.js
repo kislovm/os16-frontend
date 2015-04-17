@@ -32,8 +32,11 @@ module.exports = Backbone.View.extend({
                 if (data.error)
                     _this._showError(data.error);
                 else {
-                    _this.model.set('uploaded', true);
-                    _this.model.set('products', data.data);
+                    _this.model.set({
+                        'uploaded': true,
+                        'products': data.data,
+                        'sequence': data.sequence
+                    });
                 }
                 _this._onUploadFinish();
             },

@@ -1,0 +1,23 @@
+div.orderforming__trobber-holder
+    img(src="/static/img/495.GIF")
+
+div#leftpage
+    table.orderforming__table
+        thead.orderforming__table-header
+            tr
+                th.header_sorting_yes(data-sorting="row_num") #
+                th.header_sorting_yes(data-sorting="name") Дата
+                th.header_sorting_yes(data-sorting="amount") Сумма
+                th Валюта
+        tbody.orderforming__table-body
+            each item in items
+                tr(data-id=item.id, data-pid=item.id, data.amount=item.amount)
+                    td= item.row_num
+                    td.orderforming-number= item.payment_date
+                    td.naimenovanie= item.payment_amount
+                    td.uslovia= item.currency_name
+
+    a.get-back-link(href="/#order/" + orderId) Назад
+
+div#rightpage
+    h2 Оплаты

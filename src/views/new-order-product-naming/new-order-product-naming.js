@@ -13,7 +13,8 @@ module.exports = Backbone.View.extend({
     events: {
         'click .new-order__back': '_back',
         'click .new-order__save-naming': '_save',
-        'click .new-order__naming-edit': '_edit'
+        'click .new-order__naming-edit': '_edit',
+        'click .new-order__naming-delete': '_delete'
     },
 
     initialize: function() {
@@ -21,7 +22,7 @@ module.exports = Backbone.View.extend({
         this.model.on('change:products', this._changeProducts, this);
         this.collection = new ProductNamingCollection;
 
-        this.collection.on('change add', this.render, this);
+        this.collection.on('change add remove', this.render, this);
         this.render();
     },
 
@@ -36,6 +37,18 @@ module.exports = Backbone.View.extend({
                 contentModel: new SelectPositionModel,
                 contentParams: { itemModel: this.collection.get(el.data('model-id')) }
             });
+    },
+
+    _delete: function(e) {
+        if(!confirm('Вы уверены, что хотите удалить позицию из списка. В таком случае она не попадет в новый заказ')) return;
+
+        var id = $(e.currentTarget).data('model-id');
+
+        $.post('/new-order/' + this.model.get('sequence') + '/remove-product/',
+            { productName: this.collection.get(id).get('customer_product_name') },
+            'json');
+        this.collection.remove({ id: id });
+        if(this.collection.length == 0) this.model.set('named', true);
     },
 
     _changeProducts: function() {
@@ -65,7 +78,7 @@ module.exports = Backbone.View.extend({
     _save: function() {
         var _this = this;
 
-        $.post('/new-order/', { data: this.collection.toJSON() }, 'json')
+        $.post('/settings/prodnames/load/', {products: JSON.stringify(this.collection.toJSON())}, 'json')
             .success(function() {
                 _this.model.set('named', true);
             })

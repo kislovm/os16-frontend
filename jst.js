@@ -67,6 +67,12 @@ window.JST['orders/head'] = _.template('<table cellspacing="0" cellpadding="0" b
 
 window.JST['orders/order'] = _.template('<a href="#order/<%= id %>" class="<%= state %>"><div class="row"> \
                 <div class="order-date"><%= date_order %></div>\
+                <div class="order-messages">\
+                    <img src="http://www.clipartbest.com/cliparts/aTq/o5R/aTqo5RjXc.png" height="64" width="64"/> \
+                    <div class="order-messages__count">\
+                        <%= unread_messages_count %>\
+                    </div>\
+                </div>\
                 <% if    (problem == "true") {%>  <div class="problem" > <% }%> \
                      <div class="red"> \
                      <div class="smog"> \
@@ -333,51 +339,6 @@ window.JST['backorder/main'] = _.template('\
     </div>')
 
 
-window.JST['payments/main'] = _.template('\
-          <div class="orderforming__trobber-holder"><img class="orderforming__trobber" src="/static/img/495.GIF"/></div>\
-          <div id="leftpage"> \
-        <table id="orderlistheader"> \
-            <thead> \
-                <tr>\
-                <th class="orderforming-number header_sorting_yes" data-sorting="row_num">#</th>\
-                <th class="naimenovanie header_sorting_yes" data-sorting="name">Дата</th> \
-                <th class="kol-vo header_sorting_yes" data-sorting="amount">Сумма</th> \
-                <th class="rekomand">Валюта</th> \
-            </thead> \
-        </table> \
-        <div id="scroll"> \
-          <table id="orderlistcontent" class="orderlistcontent_status_draft"> \
-            <tbody> \
-            <% if(items) { %>\
-                <% _.each(items, function(item, i){ %> \
-                    <tr data-id="<%= item.id %>" data-pid="<%= item.id %>" data-amount=<%= item.amount %>>\
-                    <td class="orderforming-number"><div class="delete icon red-icon">x</div><%= item.payment_date %></td>\
-                    <td class="naimenovanie"><a <% if(item.product_url) { %>href="<%= item.product_url %>" target="_blank" <% } %>><%= item.payment_amount %></a></td> \
-                    <td class="uslovia"><%= item.currency_name %></td></tr> \
-                <% }) %>\
-            <% } %>\
-            </tbody> \
-           </table> \
-        </div> \
-            <a href="/#order/<%= orderId %>/" class="get-back-link">Назад</a> \
-      </div> \
-      <div id="rightpage"> \
-        <h2>\
-        Оплаты\
-        </h2> \
-        <table id="ordersummary"> \
-        <tbody> \
-        </tbody> \
-        </table> \
-        <div id="zakladki"> \
-            <a class="zakladka green" href="#order/<%= orderId %>">Заказ</a> \
-            <a class="zakladka violet" href="#order/<%= orderId %>/payments">Оплаты</a> \
-            <a class="zakladka red" href="#order/<%= orderId %>/chat">Обсуждение заказа</a> \
-            <a class="zakladka yellow not-implemented" href="#">Условия договора</a> \
-        </div> \
-      </div> \
-    </div>')
-
 window.JST['orderforming/add1'] = _.template('\
                <div id="good-adding-3" class="single-form"> \
                 <div class="single-form-header">Добавление товара</div> \
@@ -628,7 +589,6 @@ window.JST['productNaming'] = _.template(
 //            '<input class="product-naming__save" type="button" value="Сохранить"/>' +
         '</div>' +
         '<div class="product-naming__state">' +
-            'На данный момент список одобрен менеджером и используется для создания новых заказов. Внесение любых изменений в список потребует повторного утверждения у менеджера. На время рассмотрения списка создание новых заказов будет заблокировано.' +
         '</div>' +
     '</div>'
 )

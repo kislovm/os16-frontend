@@ -60,7 +60,6 @@
                 "": "start",
                 "new_order": "new_order",
                 "new_order/edit": "new_order_edit",
-                "load_backorder": "load_backorder",
                 "backorder": "backorder",
                 "order/:order_id": "order",
                 "order/:order_id/payments": "payments",
@@ -153,22 +152,24 @@
                 new PanelView({
                     collection: this.panel, el: element
                 });
-                if (this.timeline == undefined) this.timeline = new TimelineView();
-                else this.timeline.render();
+
+                this.timeline ?
+                    this.timeline.render() :
+                    (this.timeline = new TimelineView());
             },
 
             order: function(orderId) {
 
                 try {
                     GLOBAL.trigger('Close');
-                    this.orderforming.el = undefined;
-                    ;
+                    this.orderforming &&
+                        (this.orderforming.el = undefined);
                 } catch (e) {
                     console.log(e);
                 }
 
                 $('#ruller-separator').remove();
-                $('#payment-ruller-fon').remove()
+                $('#payment-ruller-fon').remove();
                 removejscssfile("/static/css/order.css", "css");
                 removejscssfile("/static/css/ls.css", "css");
                 loadjscssfile("/static/css/orderforming.css", "css");
@@ -264,7 +265,7 @@
                     var orderId = data.result, confirm;
 
                     if (!orderId) {
-                        that.navigate('load_backorder', {trigger: true});
+                        that.navigate('new-order', {trigger: true});
                         return;
                     } else {
                         confirm = $.cookie('saved') == '1' ? new OrderSavedConfirm : new OrderAutomaticalySavedConfirm;
@@ -298,7 +299,7 @@
                 $.post('/order/new/', function(data) {
                     var orderId = data.result;
 
-                    if (!orderId) that.navigate('load_backorder', {trigger: true});
+                    if (!orderId) that.navigate('new-order', {trigger: true});
 
                     $.cookie('saved', 0);
 
@@ -307,17 +308,6 @@
                     });
 
                 }, 'json');
-            },
-
-            load_backorder: function() {
-                var that = this;
-                GLOBAL.trigger('closePopups');
-                $.post('/order/new/', function(data) {
-                    var orderId = data.result;
-                    if (orderId) that.navigate('/order/new/', {trigger: true});
-
-                    new Popup({contentView: Backorder});
-                })
             }
 
         });
@@ -419,22 +409,29 @@
 
                 this.collection.on('change', this.render, this);
 
+                this.collection.on('change', this._load, this);
+
                 this._fetchData();
+            },
+
+            _load: function() {
+                $.post('/settings/prodnames/load/',
+                    { products: JSON.stringify(this.collection.toJSON()) },
+                    function(data) { console.log(data); },
+                    'json');
             },
 
 
             _fetchData: function() {
-                var loading = this.$el.find('.product-naming__loading').show();
-                this.collection.fetch().done(function() {
-                    loading.hide();
-                });
+                var loading = this.$el.find('.product-naming__loading');
+
+
+                this.collection.fetch()
+                    .done(loading.hide.bind(loading))
             },
 
             _clearTable: function() {
-                var _this = this;
-                $.get('/settings/prodnames/clear/', function() {
-                    _this._fetchData();
-                });
+                $.get('/settings/prodnames/clear/').then(this._fetchData.bind(this));
             },
 
             render: function() {
@@ -503,7 +500,7 @@
                         function(data) {
                             console.log(data);
                         },
-                        'json')
+                        'json');
 
                     $el.find('table input').each(function(i, el) {
                         el = $(el);
@@ -653,6 +650,8 @@
         });
 
         var ChatView = require('./src/chat-view/chat-view.js');
+
+        var NewMessageView = require('./src/new-message/new-message.js');
 
         var Order = Backbone.Model.extend({ //Модель. Все что у неё есть это список стандартных параметров.
             defaults: {
@@ -869,12 +868,21 @@
         });
 
         var PaymentsView = ANView.extend({
-            _template: JST['payments/main'],
+            _template: require('./src/payments/payments.jade'),
+
+            _onFail: function() {
+                alert('Не удалось загрузить оплаты, пожалуйста, попробуйте обновить страницу. Если ошибка повторяется - сообщите об этом менеджеру Allied Nippon.')
+            },
+
+            updateData: function() {
+                this.model.fetch().then(
+                    this.render.bind(this),
+                    this._onFail.bind(this)
+                );
+            },
 
             initialize: function() {
-                this.model.on('add', this.render, this);
-                this.model.on('reset', this.render, this);
-                this.model.fetch();
+                this.updateData();
             },
 
             render: function() {
@@ -1596,7 +1604,7 @@
             }, _onRightClick: function() {
                 var that = this;
                 $.post('/order/new/delete/', function() {
-                    controller.navigate('load_backorder', {trigger: true});
+                    controller.navigate('new-order', {trigger: true});
                     that.destruct();
                 })
             }
@@ -1613,7 +1621,7 @@
             }, _onRightClick: function() {
                 var that = this;
                 $.post('/order/new/delete/', function() {
-                    controller.navigate('load_backorder', {trigger: true});
+                    controller.navigate('new-order', {trigger: true});
                     that.destruct();
                 })
             }
@@ -1630,6 +1638,10 @@
                 GLOBAL.on('closePopups', function() {
                     $('.paranja').hide();
                 });
+
+                var newMessageView = new NewMessageView();
+
+                $('body').append(newMessageView.$el);
 
                 $('body').on('click', '.not-implemented', notImplemented);
                 try {

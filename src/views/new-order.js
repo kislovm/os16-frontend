@@ -14,13 +14,30 @@ module.exports = Backbone.View.extend({
     },
 
     _onUploadedChange: function() {
-        if(this.model.get('uploaded'))
-            alert('Файл был успешно загружен и распознан. Вы можете перейти ко второму шагу.');
+        if(this.model.get('uploaded')) {
+            if(this.model.get('products') && this.model.get('products').length > 0)
+                alert('Файл был успешно загружен и распознан. Вы можете перейти ко второму шагу.');
+            else {
+                alert('Файл был успешно загружен и распознан. Все продукты найдены в базе, второй шаг не требуется. Сейчас будет создан заказ.');
+                this._createOrder()
+            }
+        }
     },
 
     _onNamedChange: function() {
-        if(this.model.get('named'))
-            alert('Соответсвия успешно установлены. Сейчас будет создан заказ.');
+        if(this.model.get('named')) {
+            alert('Соответствия успешно установлены. Сейчас будет создан заказ.');
+            this._createOrder()
+        }
+    },
+
+    _createOrder: function() {
+        this.$el.addClass('new-order__creating');
+
+        $.get('/new-order/' + this.model.get('sequence') + '/', 'json')
+           .success(function() {
+               controller.navigate('new_order/edit', { trigger: 'true' });
+           });
     },
 
     render: function() {

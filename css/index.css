@@ -1122,8 +1122,26 @@ a {
     display: none;
 }
 
-.new-order__naming-edit {
+.new-order__naming-edit,
+.new-order__naming-delete {
     cursor: pointer;
+}
+
+.new-order__creating-wrapper {
+    display: none;
+    height: 400px;
+    font-size: 3em;
+    line-height: 3em;
+    text-align: center;
+}
+
+
+.new-order__creating .new-order__part {
+    display: none;
+}
+
+.new-order__creating .new-order__creating-wrapper {
+    display: block;
 }
 
 .select-position select {
@@ -1247,4 +1265,98 @@ a {
     {
         background-position: 60px 0;
     }
+}
+
+.new-message {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    padding: 20px;
+    height: 50px;
+    background: rgba(230,230,230,.9);
+    border-radius: 5px;
+    font-weight: bold;
+    display: none;
+    color: #000000;
+    text-align: center;
+}
+
+.new-message p {
+    margin-bottom: 20px;
+}
+
+.order-messages {
+    color: #ffffff;
+    text-align: right;
+    text-decoration: none;
+    position: absolute;
+    right: -50px;
+    top: 20px;
+}
+
+.order-messages__count {
+    position: absolute;
+    top: 30px;
+    left: 12px;
+    color: red;
+    font-weight: bold;
+    background: whitesmoke;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px #000;
+    text-align: center;
+    text-shadow: .2px .3px #700;
+}
+
+.orderforming__table {
+    width: 100%;
+}
+
+.orderforming__table-header {
+    margin-bottom: 5px;
+}
+
+.orderforming__table-header th {
+    text-transform: uppercase;
+    height: 42px;
+    color: #9c2a4c;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 10px;
+    font-weight: bold;
+    border: solid 1px #eae6e7;
+}
+
+.orderforming__table-header th:first-child {
+    width: 30px;
+}
+
+.orderforming__table-header:after {
+    content: '-';
+    display: block;
+    line-height: 4px;
+    color: transparent;
+}
+
+.orderforming__table-body {
+    overflow: hidden;
+    height: 510px;
+    border-top: solid 1px #d3a0b1;
+    border-bottom: solid 1px #d2e4e6;
+}
+
+.orderforming__table-body tr:first-child td {
+    border-top: solid 1px #d3a0b1;
+    border-collapse: separate;
+}
+
+.orderforming__table-body td {
+    text-align: center;
+    height: 30px;
+    color: #6d7273;
+    font-size: 10pt;
+    font-weight: bold;
+    vertical-align: middle;
+    border: solid 1px #e6e6e6;
+    border-left-width: 0px;
 }

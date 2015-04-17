@@ -13,9 +13,11 @@ div.new-order__content
             th
         each product in products
             tr
-                td= product.product_name
+                td= product.customer_product_name
                 td= product.client_product_name
                 td
+                    a.new-order__naming-delete(data-model-id= product.id)
+                        img(src='http://icons.iconarchive.com/icons/dryicons/simplistica/16/delete-icon.png')
                     a.new-order__naming-edit(data-model-id= product.id)
                         img(src='http://png-1.findicons.com/files/icons/1588/farm_fresh_web/16/pencil.png')
 
