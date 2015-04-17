@@ -577,7 +577,6 @@ window.JST['productNaming'] = _.template(
         '</table>' +
         '<div class="product-naming__controls">' +
             '</br>' +
-//            '<input class="product-naming__add-row" type="button" value="Добавить строку"/>' +
             '<form class="product-naming__xls-form" method="POST" enctype="multipart/form-data" action="/settings/prodnames/xls/">' +
                 '<input type="file" name="file"/>' +
                 '<input class="product-naming__upload-file" type="button" value="Загрузить"/>' +
@@ -585,8 +584,6 @@ window.JST['productNaming'] = _.template(
                 '</br>' +
                 '<div>Формат файла для загрузки: xls или xlsx с наименованиями позиций, перечисленными в столбик</div>' +
             '</form>' +
-//            '</br>Редактирование разблокировано ' +
-//            '<input class="product-naming__save" type="button" value="Сохранить"/>' +
         '</div>' +
         '<div class="product-naming__state">' +
         '</div>' +
