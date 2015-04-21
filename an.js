@@ -187,6 +187,7 @@ AN = function() {
         },
 
         payments: function(orderId) {
+<<<<<<< HEAD
 
             try {
                 GLOBAL.trigger('Close');
@@ -210,6 +211,28 @@ AN = function() {
                             orderId: 0
                         }
                     }))({orderId: orderId})
+=======
+
+            try {
+                GLOBAL.trigger('Close');
+                this.orderforming.el = undefined;
+            } catch (e) {
+                console.log(e);
+            }
+
+            $('#ruller-separator').remove();
+            $('#payment-ruller-fon').remove();
+            removejscssfile("/static/css/order.css", "css");
+            removejscssfile("/static/css/ls.css", "css");
+            loadjscssfile("/static/css/orderforming.css", "css");
+
+            this.paymentsView = new PaymentsView({
+                el: element, model: new (Backbone.Model.extend({
+                    url: '/order/' + orderId + '/payments/', defaults: {
+                        items: [], orderId: 0
+                    }
+                }))({orderId: orderId})
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
             });
 
             this.paymentsView.render();
@@ -248,6 +271,7 @@ AN = function() {
             } catch (e) {
                 console.log(e);
             }
+<<<<<<< HEAD
 
             removejscssfile("/static/css/order.css", "css");
             removejscssfile("/static/css/ls.css", "css");
@@ -268,6 +292,28 @@ AN = function() {
             $.post('/order/new/', function(data) {
                 var orderId = data.result, confirm;
 
+=======
+
+            removejscssfile("/static/css/order.css", "css");
+            removejscssfile("/static/css/ls.css", "css");
+            removejscssfile("/static/css/orderforming.css", "css");
+
+            new ChatView({
+                el: element,
+                orderId: orderId
+            });
+
+        },
+
+        new_order: function() {
+            var that = this;
+
+            GLOBAL.trigger('closePopups');
+
+            $.post('/order/new/', function(data) {
+                var orderId = data.result, confirm;
+
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
                 if (!orderId) {
                     that.navigate('new-order', {trigger: true});
                     return;
@@ -280,11 +326,19 @@ AN = function() {
         },
 
         new_order_edit: function() {
+<<<<<<< HEAD
 
             var that = this;
 
             GLOBAL.trigger('closePopups');
 
+=======
+
+            var that = this;
+
+            GLOBAL.trigger('closePopups');
+
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
             removejscssfile("/static/css/order.css", "css");
             removejscssfile("/static/css/ls.css", "css");
             loadjscssfile("/static/css/orderforming.css", "css");
@@ -294,6 +348,7 @@ AN = function() {
             } catch (e) {
                 console.log(e);
             }
+<<<<<<< HEAD
 
             $.cookie('saved', 0);
 
@@ -302,6 +357,16 @@ AN = function() {
             $.post('/order/new/', function(data) {
                 var orderId = data.result;
 
+=======
+
+            $.cookie('saved', 0);
+
+            $(element).html(''); //хак чтобы не моргало
+
+            $.post('/order/new/', function(data) {
+                var orderId = data.result;
+
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
                 if (!orderId) that.navigate('new-order', { trigger: true });
 
                 $.cookie('saved', 0);
@@ -476,6 +541,10 @@ AN = function() {
             'click .select': '_onSelect'
         },
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
         _template: JST['select-position'],
 
         _onCategoryChange: function() {
@@ -707,6 +776,7 @@ AN = function() {
                     that.col = $('<div class="kolonka"></div>');
                 }
 
+<<<<<<< HEAD
 
             });
             return this;
@@ -821,6 +891,112 @@ AN = function() {
                 contentView: AddFromXlsView,
                 contentModel: new Backbone.Model({ orderId: this.model.get('orderId') })
             });
+=======
+
+            });
+            return this;
+        }
+
+
+    });
+
+    var TimelineModel = Backbone.Model.extend({
+        defaults: {
+            date: "", price: 0, state: ""
+        }
+    });
+
+    var Timeline = Backbone.Collection.extend({
+        model: TimelineModel, url: '/timeline/'
+    })
+
+    var TimelineView = ANView.extend({
+        collection: new Timeline,
+
+        _template: JST['ls/timeline'],
+
+        initialize: function() {
+            this.collection.bind('reset', this.render, this);
+            this.collection.fetch({reset: true});
+        },
+
+        render: function() {
+            $('#ruller-separator').remove();
+            $('#payment-ruller-fon').remove();
+            var html = this._template({
+                timeline: this.collection.toJSON()
+            });
+            $('div#total').append(html);
+        }
+    });
+
+    var OrderformingModel = Backbone.Model.extend({
+        url: function() { return '/order/' + this.get('orderId') + '/' },
+
+        defaults: {
+            date: new Date().getFullDate(),
+            head: 'Запрос',
+            title_name: 'Заказ',
+            status_name: '',
+            weight: 0,
+            link: '/',
+            rate: 0,
+            price: 0,
+            price_rub: 0,
+            items: [],
+            orderId: 0,
+            web_discount: 0
+        }
+    });
+
+    var BackorderModel = OrderformingModel.extend({
+        url: '/backbone/'
+    });
+
+    var PaymentsView = ANView.extend({
+        _template: require('./src/payments/payments.jade'),
+
+        _onFail: function() {
+            alert('Не удалось загрузить оплаты, пожалуйста, попробуйте обновить страницу. Если ошибка повторяется - сообщите об этом менеджеру Allied Nippon.')
+        },
+
+        updateData: function() {
+            this.model.fetch().then(
+                this.render.bind(this),
+                this._onFail.bind(this)
+            );
+        },
+
+        initialize: function() {
+            this.updateData();
+        },
+
+        render: function() {
+            this.$el.html(this._template(this.model.toJSON()));
+        }
+
+    });
+
+    var OrderformingView = ANView.extend({
+
+        model: new OrderformingModel,
+
+        _template: JST['orderforming/main'],
+
+        events: {
+            "click .add ": "addViewOpen", //"click #orderlistcontent tr:not(.add)": "selectItem",
+            "change .amount": "changeAmount",
+            "click .delete": "deleteItem",
+            "click .info": "itemInfo",
+            "click .rezerv": "rezerv",
+            "click .save": "save",
+            "click .plus": "increaseAmount",
+            "click .minus": "decreaseAmount",
+            "click .plus-ten": "increaseAmountByTen",
+            "click .minus-ten": "decreaseAmountByTen",
+            "click .backorder": "backorder",
+            "click .header_sorting_yes": "changeSorting"
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
         },
 
         onRoute: function(route, arg) {
@@ -933,6 +1109,7 @@ AN = function() {
         },
 
         _minItemAmount: 1, _minItemAmount: 1,
+<<<<<<< HEAD
 
         increaseAmount: function(e, amount) {
             var el = $(e.currentTarget), pid = el.parents('tr').data('id'), items = this.model.get('items'), item, amount = amount ||
@@ -940,6 +1117,15 @@ AN = function() {
 
             if (el.hasClass('icon_disabled_yes')) return;
 
+=======
+
+        increaseAmount: function(e, amount) {
+            var el = $(e.currentTarget), pid = el.parents('tr').data('id'), items = this.model.get('items'), item, amount = amount ||
+                    1;
+
+            if (el.hasClass('icon_disabled_yes')) return;
+
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
             for (var i = 0; i < items.length; i++) {
                 if (items[i].id == pid) {
                     item = items[i];
@@ -1208,6 +1394,40 @@ AN = function() {
         }
     });
 
+<<<<<<< HEAD
+=======
+    var Popup = ANView.extend({
+
+        template: JST.popup,
+
+        initialize: function(options) {
+            this.contentView = options.contentView;
+            this.contentModel = options.contentModel;
+            this.contentParams = options.contentParams || {};
+            GLOBAL.on('closePopups', this.remove, this);
+            this.render();
+        },
+
+        render: function() {
+            var that = this, popup = $(this.template());
+            $('.paranja').show().click(function() {
+                that.remove();
+                $(this).hide();
+            });
+            this.contentModel ?
+                new this.contentView({
+                    el: popup.find('.popup__content'),
+                    model: this.contentModel,
+                    params: this.contentParams
+                }) :
+                new this.contentView({el: popup.find('.popup__content'), params: this.contentParams});
+            this.$el.html(popup);
+            this.$el.appendTo('body');
+            popup.css({'margin-top': '-' + (popup.height() / 2 + 50) + 'px'});
+        }
+    });
+
+>>>>>>> 0b0e3d752d96c1bbe679a69bf25d9fe47f475ade
     var ItemAdditionalInfoView = ANView.extend({
 
         initialize: function() {
