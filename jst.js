@@ -178,11 +178,12 @@ window.JST['orderforming/main'] = _.template('\
            </table> \
         </div> \
         <% if(this.model.get("editable") == 1) { %>\
-            <a href="#" onclick="return false;"><img src="/static/img/orderforming/add-poz.png" class="add" alt="Добавить" /></a> \
+            <a class="orderforming__add">Добавить</a> | \
+            <a class="orderforming__add-from-xls">Добавить из XLS</a> | \
         <% } else { %>\
             <div class="nondraft-warning">В зарезервированный заказ изменения не вносятся. По всем вопросам обращайтесь к менеджеру. Перейти в <a href="#new_order">новый заказ</a></div>\
         <% } %>\
-            <a href="/order/<%= orderId %>/xls/" class="get-xls-link">Скачать XLS</a> \
+            <a href="/order/<%= orderId %>/xls/" class="get-xls-link">Скачать XLS</a> |\
             <a href="#" class="get-back-link">Назад</a> \
       </div> \
       <div id="rightpage"> \
@@ -577,7 +578,6 @@ window.JST['productNaming'] = _.template(
         '</table>' +
         '<div class="product-naming__controls">' +
             '</br>' +
-//            '<input class="product-naming__add-row" type="button" value="Добавить строку"/>' +
             '<form class="product-naming__xls-form" method="POST" enctype="multipart/form-data" action="/settings/prodnames/xls/">' +
                 '<input type="file" name="file"/>' +
                 '<input class="product-naming__upload-file" type="button" value="Загрузить"/>' +
@@ -585,8 +585,6 @@ window.JST['productNaming'] = _.template(
                 '</br>' +
                 '<div>Формат файла для загрузки: xls или xlsx с наименованиями позиций, перечисленными в столбик</div>' +
             '</form>' +
-//            '</br>Редактирование разблокировано ' +
-//            '<input class="product-naming__save" type="button" value="Сохранить"/>' +
         '</div>' +
         '<div class="product-naming__state">' +
         '</div>' +

@@ -16,6 +16,12 @@ a
     color: #6EBBFA;
 }
 
+a:not([href])
+{
+    border-bottom: 1px dotted #6EBBFA;
+    cursor: pointer;
+}
+
 center
 {
     height: 100%;
@@ -614,20 +620,6 @@ th.header_sorting_yes:hover
 th.header_sorting_yes.active
 {
     color: green !important;
-}
-
-.get-xls-link
-{
-    position: absolute;
-    left: 100px;
-    top: 590px;
-}
-
-.get-back-link
-{
-    position: absolute;
-    left: 220px;
-    top: 590px;
 }
 
 .orderforming__rezerv,
@@ -1359,4 +1351,13 @@ a {
     vertical-align: middle;
     border: solid 1px #e6e6e6;
     border-left-width: 0px;
+}
+
+.add-from-xls__header {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.add-from-xls__text {
+    margin: 15px 0;
 }

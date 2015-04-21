@@ -1,0 +1,7 @@
+h1.add-from-xls__header Добавить позиции из XLS
+
+p.add-from-xls__text Пожалуйста, выберите XLS файл с позициями и нажмите «Загрузить».
+
+form.add-from-xls__file-upload-form(method='POST', enctype='multipart/form-data', action='/new-order/add-from-xls/')
+    input.add-from-xls__file-upload-input(type='file', name='file')
+    input.add-from-xls__file-upload-button(type='submit', value='Загрузить')
