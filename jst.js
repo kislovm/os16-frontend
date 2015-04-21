@@ -1,12 +1,5 @@
 window.JST = {};
 
-window.JST['popup'] = _.template(
-    '<div class="popup"> \
-        <div class="popup__content"> \
-        </div> \
-    </div>'
-)
-
 window.JST['orders/head'] = _.template('<table cellspacing="0" cellpadding="0" border="0"> \
                              <tbody> \
                               <tr> \

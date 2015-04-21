@@ -1,21 +1,23 @@
 module.exports = Backbone.View.extend({
 
-    template: JST.popup,
+    template: require('./popup.jade'),
 
     initialize: function(options) {
         this.contentView = options.contentView;
         this.contentModel = options.contentModel;
         this.contentParams = options.contentParams || {};
-        GLOBAL.on('closePopups', this.remove, this);
+        GLOBAL.on('closePopups', this.close, this);
         this.render();
     },
 
     render: function() {
         var that = this, popup = $(this.template());
+
         $('.paranja').show().click(function() {
-            that.remove();
+            that.close();
             $(this).hide();
         });
+
         this.contentModel ?
             new this.contentView({
                 el: popup.find('.popup__content'),
@@ -23,8 +25,15 @@ module.exports = Backbone.View.extend({
                 params: this.contentParams
             }) :
             new this.contentView({el: popup.find('.popup__content'), params: this.contentParams});
+
         this.$el.html(popup);
         this.$el.appendTo('body');
-        popup.css({'margin-top': '-' + (popup.height() / 2) + 'px'});
+        $('body').css({ 'overflow': 'hidden' });
+        popup.css({'margin-top': '-' + (popup.height()) + 'px'});
+    },
+
+    close: function() {
+        $('body').css({ 'overflow': 'auto' });
+        this.remove();
     }
 });

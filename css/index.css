@@ -173,7 +173,7 @@ a.button
 
 .popup
 {
-    position: absolute;
+    position: fixed;
     min-width: 400px;
     background: #ffffff;
     left: 50%;
