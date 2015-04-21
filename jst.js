@@ -178,11 +178,12 @@ window.JST['orderforming/main'] = _.template('\
            </table> \
         </div> \
         <% if(this.model.get("editable") == 1) { %>\
-            <a href="#" onclick="return false;"><img src="/static/img/orderforming/add-poz.png" class="add" alt="Добавить" /></a> \
+            <a class="orderforming__add">Добавить</a> | \
+            <a class="orderforming__add-from-xls">Добавить из XLS</a> | \
         <% } else { %>\
             <div class="nondraft-warning">В зарезервированный заказ изменения не вносятся. По всем вопросам обращайтесь к менеджеру. Перейти в <a href="#new_order">новый заказ</a></div>\
         <% } %>\
-            <a href="/order/<%= orderId %>/xls/" class="get-xls-link">Скачать XLS</a> \
+            <a href="/order/<%= orderId %>/xls/" class="get-xls-link">Скачать XLS</a> |\
             <a href="#" class="get-back-link">Назад</a> \
       </div> \
       <div id="rightpage"> \

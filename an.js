@@ -1,4 +1,5 @@
 var NewOrderView = require('./src/views/new-order.js');
+var Popup = require('./src/popup/popup-view.js');
 
 AN = function() {
 
@@ -201,11 +202,14 @@ AN = function() {
             loadjscssfile("/static/css/orderforming.css", "css");
 
             this.paymentsView = new PaymentsView({
-                el: element, model: new (Backbone.Model.extend({
-                    url: '/order/' + orderId + '/payments/', defaults: {
-                        items: [], orderId: 0
-                    }
-                }))({orderId: orderId})
+                el: element,
+                model: new (Backbone.Model.extend({
+                        url: '/order/' + orderId + '/payments/',
+                        defaults: {
+                            items: [],
+                            orderId: 0
+                        }
+                    }))({orderId: orderId})
             });
 
             this.paymentsView.render();
@@ -471,7 +475,6 @@ AN = function() {
             'change .group-select': '_onGroupChange',
             'click .select': '_onSelect'
         },
-
 
         _template: JST['select-position'],
 
@@ -789,6 +792,8 @@ AN = function() {
 
     });
 
+    var AddFromXlsView = require('./src/orderforming/add-from-xls/add-from-xls.js');
+
     var OrderformingView = ANView.extend({
 
         model: new OrderformingModel,
@@ -796,7 +801,8 @@ AN = function() {
         _template: JST['orderforming/main'],
 
         events: {
-            "click .add ": "addViewOpen", //"click #orderlistcontent tr:not(.add)": "selectItem",
+            "click .orderforming__add": "addViewOpen",
+            "click .orderforming__add-from-xls": "_addFromXls",
             "change .amount": "changeAmount",
             "click .delete": "deleteItem",
             "click .info": "itemInfo",
@@ -808,6 +814,13 @@ AN = function() {
             "click .minus-ten": "decreaseAmountByTen",
             "click .backorder": "backorder",
             "click .header_sorting_yes": "changeSorting"
+        },
+
+        _addFromXls: function() {
+            this.xlsPopup = new Popup({
+                contentView: AddFromXlsView,
+                contentModel: new Backbone.Model({ orderId: this.model.get('orderId') })
+            });
         },
 
         onRoute: function(route, arg) {
@@ -1192,37 +1205,6 @@ AN = function() {
             this.defaultInput && $(this.defaultInput).focus();
             $(this.el).find('.good-item').eq(0).click();
             return this;
-        }
-    });
-
-    var Popup = ANView.extend({
-
-        template: JST.popup,
-
-        initialize: function(options) {
-            this.contentView = options.contentView;
-            this.contentModel = options.contentModel;
-            this.contentParams = options.contentParams || {};
-            GLOBAL.on('closePopups', this.remove, this);
-            this.render();
-        },
-
-        render: function() {
-            var that = this, popup = $(this.template());
-            $('.paranja').show().click(function() {
-                that.remove();
-                $(this).hide();
-            });
-            this.contentModel ?
-                new this.contentView({
-                    el: popup.find('.popup__content'),
-                    model: this.contentModel,
-                    params: this.contentParams
-                }) :
-                new this.contentView({el: popup.find('.popup__content'), params: this.contentParams});
-            this.$el.html(popup);
-            this.$el.appendTo('body');
-            popup.css({'margin-top': '-' + (popup.height() / 2 + 50) + 'px'});
         }
     });
 

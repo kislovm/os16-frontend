@@ -21,3 +21,10 @@ div#leftpage
 
 div#rightpage
     h2 Оплаты
+    div#zakladki
+        a.zakladka.green(href='#order/' + orderId) Заказ
+        a.zakladka.violet(href='#order/' + orderId + '/payments') Оплаты
+        a.zakladka.red(href='#order/' + orderId + '/chat') Обсуждение заказа
+        a.zakladka.yellow.not-implemented Условия договора
+
+
