@@ -1,5 +1,7 @@
 var NewOrderView = require('./src/views/new-order.js');
 var Popup = require('./src/popup/popup-view.js');
+var ChatView = require('./src/chat-view/chat-view.js');
+var NewMessageView = require('./src/new-message/new-message.js');
 
 AN = function() {
 
@@ -550,10 +552,6 @@ AN = function() {
 
     });
 
-    var ChatView = require('./src/chat-view/chat-view.js');
-
-    var NewMessageView = require('./src/new-message/new-message.js');
-
     var Order = Backbone.Model.extend({ //Модель. Все что у неё есть это список стандартных параметров.
         defaults: {
             problem: false
@@ -589,6 +587,7 @@ AN = function() {
             this._orderViews = [];
             this.collection.bind('add', this.add, this);
             this.collection.bind('reset', this.initialize, this);
+            GLOBAL.bind('new-message', this.collection.fetch, this.collection);
 
             this.collection.each(function(order) {
                 that._orderViews.push(new OrderView({
@@ -604,9 +603,11 @@ AN = function() {
             this.model.set({
                 col1: this.collection.filter(function(order) {
                     return order.get('col') == 1
-                }).length, col2: this.collection.filter(function(order) {
+                }).length,
+                col2: this.collection.filter(function(order) {
                     return order.get('col') == 2
-                }).length, col3: this.collection.filter(function(order) {
+                }).length,
+                col3: this.collection.filter(function(order) {
                     return order.get('col') == 3
                 }).length
                 //not good

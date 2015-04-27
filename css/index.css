@@ -186,6 +186,14 @@ a.button
     background: linear-gradient(to bottom, #eeeeee 0%, #eeeeee 100%); /* W3C */
 }
 
+.popup__cross
+{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+
 .popup__header
 {
     font-size: 16px;
@@ -289,6 +297,14 @@ a.button
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e5e5e5', GradientType=0); /* IE6-8 */
 }
 
+.chat__zakladki
+{
+    position: absolute;
+    right: 38px;
+    width: 38px;
+    margin-top: 100px;
+}
+
 .chat__window
 {
     overflow-y: scroll;
@@ -299,7 +315,7 @@ a.button
     width: 100%
 }
 
-.chat__calls, .chat__back
+.chat__calls
 {
     overflow-y: auto;
     position: absolute;
@@ -311,7 +327,7 @@ a.button
 
 .chat__calls
 {
-    top: 70px;
+    top: 10px;
     box-shadow: 5px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -1300,6 +1316,13 @@ a {
     text-shadow: .2px .3px #700;
 }
 
+.order-messages__link {
+    color: red;
+    font-weight: bold;
+    background: whitesmoke;
+    text-shadow: .2px .3px #700;
+}
+
 .orderforming__table {
     width: 100%;
 }
@@ -1360,4 +1383,69 @@ a {
 
 .add-from-xls__text {
     margin: 15px 0;
+}
+
+.zakladka{
+    display: block;
+    position: relative;
+    -moz-transform: rotate(90deg); /* Для Firefox */
+    -ms-transform: rotate(90deg); /* Для IE */
+    -webkit-transform: rotate(90deg); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(90deg); /* Для Opera */
+    transform: rotate(90deg);
+    border-radius: 5px 5px 5px 0;
+    text-decoration: none;
+    text-align: center;
+    text-shadow:  1px 1px 2px #666;
+    box-shadow: inset 0 1px 0 rgba(256, 256, 256, .35);
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    z-index: 3;
+    position: relative;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
+.zakladka:before {
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+}
+
+.zakladka.green{
+    width: 60px;
+    background-color: greenyellow;
+    top: 25px;
+    left: 55px;
+}
+
+.zakladka.blue{
+    background-image: url('../img/orderforming/z2_0.png');
+    height: 115px;
+    top: -8px;
+}
+
+.zakladka.violet{
+    width: 65px;
+    background-color: mediumpurple;
+    left: 53px;
+    top: 65px;
+}
+
+.zakladka.red{
+    top: 160px;
+    width: 170px;
+    background: red;
+}
+
+.zakladka.yellow{
+    width: 166px;
+    top: 305px;
+    left: 2px;
+    background: goldenrod;
+}
+
+.zakladka:hover {
+    z-index:5 !important;
+    padding-bottom: 15px;
 }

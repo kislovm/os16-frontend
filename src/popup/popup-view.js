@@ -2,6 +2,10 @@ module.exports = Backbone.View.extend({
 
     template: require('./popup.jade'),
 
+    events: {
+        'click .popup__cross': 'close'
+    },
+
     initialize: function(options) {
         this.contentView = options.contentView;
         this.contentModel = options.contentModel;
@@ -33,6 +37,7 @@ module.exports = Backbone.View.extend({
     },
 
     close: function() {
+        $('.paranja').hide();
         $('body').css({ 'overflow': 'auto' });
         this.remove();
     }

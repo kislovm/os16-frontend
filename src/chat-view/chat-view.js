@@ -8,7 +8,7 @@ var CallsCollection = require('../calls/calls-collection.js');
 
 module.exports = Backbone.View.extend({
 
-    _template: JST['chat'],
+    _template: require('./chat.jade'),
 
     events: {
         'submit .chat__replyform': '_onMessageSend',

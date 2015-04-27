@@ -1,0 +1,20 @@
+div.chat
+
+    form.chat__replyform(method='POST', action='/order/'+ orderId + '/messages/send/')
+        textarea.chat__textarea(name='text', placeholder='Введите текст сообщения')
+
+    div.chat__right-column
+        div.chat__header
+        span.regular-btn.action-btn.chat__send-message Отправить
+
+    div.chat__calls
+        span.regular-btn.green-btn.action-btn.chat__calls-button.makecall Позвонить ✆
+        span.regular-btn.action-btn.chat__calls-button.calls__show-button Список звонков ⇩
+
+    div.chat__window
+
+    div.chat__zakladki
+        a.zakladka.green(href='#order/' + orderId) Заказ
+        a.zakladka.violet(href='#order/' + orderId + '/payments') Оплаты
+        a.zakladka.red(href='#order/' + orderId + '/chat') Обсуждение заказа
+        a.zakladka.yellow.not-implemented Условия договора

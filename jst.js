@@ -58,16 +58,18 @@ window.JST['orders/head'] = _.template('<table cellspacing="0" cellpadding="0" b
                              </tbody> \
                              </table>');
 
-window.JST['orders/order'] = _.template('<a href="#order/<%= id %>" class="<%= state %>"><div class="row"> \
+window.JST['orders/order'] = _.template('<div class="<%= state %>"><div class="row"> \
                 <div class="order-date"><%= date_order %></div>\
                 <div class="order-messages">\
-                    <img src="http://www.clipartbest.com/cliparts/aTq/o5R/aTqo5RjXc.png" height="64" width="64"/> \
-                    <div class="order-messages__count">\
-                        <%= unread_messages_count %>\
-                    </div>\
+                    <a href="#order/<%= id %>/chat" class="order-messages__link">\
+                        <img src="http://www.clipartbest.com/cliparts/aTq/o5R/aTqo5RjXc.png" height="64" width="64"/> \
+                        <div class="order-messages__count">\
+                            <%= unread_messages_count %>\
+                        </div>\
+                    </a>\
                 </div>\
                 <% if    (problem == "true") {%>  <div class="problem" > <% }%> \
-                     <div class="red"> \
+                     <a href="#order/<%= id %>" class="red"> \
                      <div class="smog"> \
                         <div class="box"> \
                         <div class="only-group"> \
@@ -86,7 +88,7 @@ window.JST['orders/order'] = _.template('<a href="#order/<%= id %>" class="<%= s
                      </div> \
                  <% if    (problem == "true") {%><div class="order__problem triangle-isosceles left">С&nbsp;заказом есть&nbsp;проблема</div><% }%>\
         </div>\
-        </a>');
+        </div>');
 
 window.JST['ls/panel'] = _.template(
     '    <div class="yarlyk <% if (problem == "true") { %> red <% } %>" id="<%= state %>"> \
@@ -485,28 +487,6 @@ window.JST['orderforming/backorder'] = _.template('\
             </div> \
             ')
 
-window.JST['chat'] = _.template(
-    '<div class="chat">' +
-        '<form class="chat__replyform replyform" method="POST" action="/order/<%= orderId %>/messages/send/">' +
-            '<textarea class="chat__textarea" name="text" placeholder="Введите текст сообщения"></textarea>' +
-            //'<input name="file" type="file" value="Загрузить файл"/>' +
-        '</form>' +
-        '<div class="chat__right-column">' +
-            '<div class="chat__header"></div>' +
-            '<span class="regular-btn action-btn chat__send-message">Отправить</span>' +
-        '</div>' +
-        '<div class="chat__back">' +
-            '<span class="regular-btn green-btn action-btn chat__calls-button chat__back-btn">Назад в заказ</span>' +
-        '</div>' +
-        '<div class="chat__calls">' +
-            '<span class="regular-btn green-btn action-btn chat__calls-button makecall">Позвонить ✆</span>' +
-            '<span class="regular-btn action-btn chat__calls-button calls__show-button">Список звонков ⇩</span>' +
-            '<div class="calls__list">' +
-            '</div>' +
-        '</div>' +
-        '<div class="chat__window"></div>' +
-    '</div>'
-)
 
 window.JST['message'] = _.template(
     '<div class="message chat_message <% if(!direction) {%> message_from_client <% } %>">' +
