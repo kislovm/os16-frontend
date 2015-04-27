@@ -1276,64 +1276,6 @@ AN = function() {
 
     });
 
-    var Backorder = ANView.extend({
-
-        events: {
-            'submit .backorder__form': 'onSubmit'
-        },
-
-        onSubmit: function(e) {
-            e.preventDefault();
-
-            $('.backorder__error').text('').hide();
-            $('.backorder__status').show();
-            $('.backorder__file').hide();
-
-            this.$el.find('form').ajaxSubmit({
-                success: function(data) {
-                    if (data.error) {
-                        $('.backorder__error').text(data.error || '').show();
-                        $('.backorder__status').hide();
-                        if (data.file) $('.backorder__file').show().attr('href', data.file);
-                        return;
-                    }
-                    GLOBAL.trigger('closePopups');
-                    setTimeout(function() {
-                        controller.navigate('new_order/edit', {trigger: true});
-                        alert("Заказ создан на основе загруженных остатков")
-                    }, 500);
-                }, dataType: 'json'
-            });
-
-        },
-
-        template: '<div class="backorder">' +
-        '<div class="backorder__header">Загрузка остатков по складу</div>' +
-        'Для создания нового черновика заказа, загрузите остатки по складу, на текущий момент. </br></br><a class="backorder__file-example" href="/static/stock_balance.xls">Скачать</a> пример файла остатков.' +
-        '<div class="backorder__error"></div>' +
-        '<a class="backorder__file">Скачать файл</a>' +
-        '<div class="backorder__status">Идет загрузка файла&nbsp;&nbsp;&nbsp;<img src="/static/img/ajax-loader.gif"></div>' +
-        '<div class="backorder__input">' +
-        '<form class="backorder__form" method="POST" enctype="multipart/form-data" action="/test/">' +
-        '<input class="backorder__file-input" name="file" type="file">' +
-        '<div class="backorder__controls">' +
-        '<a href="/" class="backorder__back">Отмена</a>' +
-        '<input type="submit" class="backorder__submit" value="Загрузить">' +
-        '</div>' +
-        '</form>' +
-        '</div>' +
-        '</div>',
-
-        initialize: function() {
-            this.render();
-        },
-
-        render: function() {
-            this.$el.html(this.template);
-        }
-
-    });
-
     var BackorderModel = OrderformingModel.extend({
         url: '/backorder/'
     });
