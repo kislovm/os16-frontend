@@ -467,7 +467,7 @@ AN = function() {
     });
 
     SelectPositionModel = Backbone.Model.extend({
-        url: 'http://django.os16.net/categorys/'
+        url: '/categorys/'
     });
 
     SelectPositionView = Backbone.View.extend({
@@ -534,7 +534,9 @@ AN = function() {
 
         _settings: [
             {
-                name: 'Соответствие наименований товаров', classname: 'productNaming', view: ProductNamingView
+                name: 'Соответствие наименований товаров',
+                classname: 'productNaming',
+                view: ProductNamingView
             }
         ],
 
@@ -542,6 +544,7 @@ AN = function() {
             var $el = this.$el;
 
             $el.html(this._template({settings: this._settings}));
+
             this._settings.forEach(function(setting) {
                 new setting.view({
                     el: $el.find('.settings__' + setting.classname)
@@ -567,14 +570,20 @@ AN = function() {
     });
 
     var Orders = Backbone.Collection.extend({ //Коллекция, которая содержит модели view, описанного выше
-        model: Order, url: '/orders/', initialize: function(models, options) {
+        model: Order,
+
+        url: '/orders/',
+
+        initialize: function(models, options) {
             if (options && options.url) this.url = options.url;
         }
     });
 
     var Counter = Backbone.Model.extend({
         defaults: {
-            col1: 0, col2: 0, col3: 0
+            col1: 0,
+            col2: 0,
+            col3: 0
         }
     });
 
@@ -917,12 +926,9 @@ AN = function() {
         },
 
         fetchData: function() {
-            var that = this;
-
             this.showTrobber();
-            this.xhr = this.model.fetch().done(function() {
-                that.hideTrobber();
-            });
+            this.xhr = this.model.fetch()
+                .done(this.hideTrobber.bind(this));
         },
 
         increaseAmountByTen: function(e) {
@@ -933,7 +939,7 @@ AN = function() {
             this.decreaseAmount(e, 10)
         },
 
-        _minItemAmount: 1, _minItemAmount: 1,
+        _minItemAmount: 1,
 
         increaseAmount: function(e, amount) {
             var el = $(e.currentTarget), pid = el.parents('tr').data('id'), items = this.model.get('items'), item, amount = amount ||
@@ -1127,25 +1133,10 @@ AN = function() {
                 return -1;
             });
 
-            //			if (items.length < this.rowCount) {
-            //				for (var i = 0; i < this.rowCount - items.length; i++) {
-            //					items.push({
-            //						"name": "",
-            //						"amount": "",
-            //						"price": "",
-            //						"discount": "",
-            //						"summ": "",
-            //						"average": "",
-            //						"reccomended": "",
-            //						"special": "",
-            //                        link: ''
-            //					});
-            //					this.model.set('items', items);
-            //				}
-            //			}
-
             this.$el.html(this._template(this.model.toJSON()));
+
             this.$el.children('#orderlistcontent tr:odd').addClass('oddrow');
+
             this.$el.find('.header_sorting_yes').each(function(i, el) {
                 $(el).data('sorting') == that.sortRule && $(el).addClass('active');
             });
@@ -1246,24 +1237,24 @@ AN = function() {
         _template: JST['confirm'],
 
         events: {
-            'click .confirm__button-left': '_onLeftClick', 'click .confirm__button-right': '_onRightClick'
+            'click .confirm__button-left': '_onLeftClick',
+            'click .confirm__button-right': '_onRightClick'
         },
 
         destruct: function() {
             $('.paranja').hide();
             this.remove();
+            Backbone.history.history.back()
         },
 
         attributes: {
             class: 'confirm'
         },
 
-        initialize: function() {
-            //GLOBAL.on('closePopups'. this.destruct, this);
-        },
-
         _text: {
-            left: 'Left', right: 'Right', text: 'Text'
+            left: 'Left',
+            right: 'Right',
+            text: 'Text'
         },
 
         _onLeftClick: function() {
@@ -1275,8 +1266,11 @@ AN = function() {
         },
 
         render: function() {
-            $('.paranja').show();
+            $('.paranja').show()
+                .click(this.destruct.bind(this));
+
             this.$el.html(this._template(this._text));
+
             $('body').append(this.$el);
         }
 
