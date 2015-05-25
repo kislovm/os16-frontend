@@ -1,4 +1,8 @@
 var NewOrderView = require('./src/views/new-order.js');
+
+var _OrderView = require('./src/order/order.js');
+var OrderModel = require('./src/order/order-model.js');
+
 var Popup = require('./src/popup/popup-view.js');
 var ChatView = require('./src/chat-view/chat-view.js');
 var NewMessageView = require('./src/new-message/new-message.js');
@@ -72,16 +76,42 @@ AN = function() {
             "settings": "settings",
             "account": "account",
             "archive": "archive",
-            "new-order": "new-order"
+            "new-order": "newOrder",
+            "new-order/edit": "newOrderEdit"
         },
 
-        "new-order": function() {
+        newOrderEdit: function() {
             GLOBAL.trigger('closePopups');
             $('#ruller-separator').remove();
             $('#payment-ruller-fon').remove();
             removejscssfile("/static/css/orderforming.css", "css");
             removejscssfile("/static/css/ls.css", "css");
-            loadjscssfile("/static/css/order.css", "css");
+            removejscssfile("/static/css/order.css", "css");
+
+            $.post('/order/new/', 'json')
+                .then((function (data) {
+                    var orderId = JSON.parse(data).result;
+
+                    if (!orderId) this.navigate('new-order', { trigger: true });
+
+                    $.cookie('saved', 0);
+
+                    this.orderView = new _OrderView({
+                        el: element,
+                        model: new OrderModel({ id: orderId })
+                    });
+                }).bind(this));
+
+
+        },
+
+        newOrder: function() {
+            GLOBAL.trigger('closePopups');
+            $('#ruller-separator').remove();
+            $('#payment-ruller-fon').remove();
+            removejscssfile("/static/css/orderforming.css", "css");
+            removejscssfile("/static/css/ls.css", "css");
+            removejscssfile("/static/css/order.css", "css");
 
             this.newOrderView = new NewOrderView({ el: element });
         },
@@ -182,7 +212,8 @@ AN = function() {
             this.orderformingViews[orderId] ?
                 this.orderformingViews[orderId].render() :
                 this.orderformingViews[orderId] = new OrderformingView({
-                    el: element, model: new OrderformingModel({
+                    el: element,
+                    model: new OrderformingModel({
                         orderId: orderId
                     })
                 });
@@ -565,6 +596,7 @@ AN = function() {
         _template: JST['orders/order'], //Его template в файле jst.js
         render: function() { //Render элемента
             this.html = this._template(this.model.toJSON());
+            //$('.orders__orders').html(require('./src/orders/orders-order.jade')(this.model.toJSON()));
             return this;
         }
     });
@@ -589,7 +621,7 @@ AN = function() {
 
 
     var OrdersView = ANView.extend({
-        _template: JST['orders/head'],
+        _template: require('./src/orders/orders-head.jade'),
 
         initialize: function() { //Инициализация view
             var that = this;
@@ -603,6 +635,7 @@ AN = function() {
                     model: order
                 }));
             });
+
             this.count();
             this.render();
         },
@@ -636,7 +669,8 @@ AN = function() {
         },
 
         render: function() { //Вызывается его рендер, в элемент вставляется рендер всех элементов коллекции и рендер модели этого view
-            $(this.el).html(this._template(this.model.toJSON()));
+            this.$el.html(this._template(this.model.toJSON()));
+
             _(this._orderViews).each(function(order) {
                 this.$el.append(order.render().html);
             }, this);
@@ -756,7 +790,9 @@ AN = function() {
     });
 
     var OrderformingModel = Backbone.Model.extend({
-        url: function() { return '/order/' + this.get('orderId') + '/' },
+        url: function() {
+            return '/order/' + this.get('orderId') + '/'
+        },
 
         defaults: {
             date: new Date().getFullDate(),
@@ -802,7 +838,7 @@ AN = function() {
 
     });
 
-    var AddFromXlsView = require('./src/orderforming/add-from-xls/add-from-xls.js');
+    var AddFromXlsView = require('./src/add-from-xls/add-from-xls.js');
 
     var OrderformingView = ANView.extend({
 
@@ -866,12 +902,9 @@ AN = function() {
             var amount;
             if (amount = this.item.get('amount')) {
                 var that = this;
-                $.post('/order/' +
-                    this.model.get('orderId') +
-                    '/add/' +
-                    this.item.get('itemId') +
-                    '/',
-                    {amount: amount},
+                $.post(
+                    '/order/' + this.model.get('orderId') + '/add/' + this.item.get('itemId') + '/',
+                    { amount: amount },
                     function(data) {
                         if (data.error) {
                             alert(data.error.text);
@@ -1200,36 +1233,7 @@ AN = function() {
         }
     });
 
-    var ItemAdditionalInfoView = ANView.extend({
-
-        initialize: function() {
-            this.render()
-        },
-
-        render: function() {
-            var json = this.model.toJSON();
-
-            this.$el.html('<h1 class="popup__header">Дополнительная информация о товаре</h1>' +
-                '<div>Остаток по складу: ' +
-                (json.stock_amount || 'Нет') +
-                '</div>' +
-                '<div>В дороге: ' +
-                (json.amount_in_way || 'Нет') +
-                '</div>' +
-                '<div>Скорость продаж: ' +
-                json.average +
-                ' ' +
-                json.ed_izm +
-                ' в месяц</div>' +
-                '<div>Кратность коробок: ' +
-                json.amount_in_pack +
-                '</div>' +
-                '<div>Краткое описание применения: ' +
-                json.product_application +
-                '</div>');
-        }
-
-    });
+    var ItemAdditionalInfoView = require('./src/order-item-info/order-item-info.js');
 
 
     var ConfirmView = ANView.extend({
@@ -1244,7 +1248,6 @@ AN = function() {
         destruct: function() {
             $('.paranja').hide();
             this.remove();
-            Backbone.history.history.back()
         },
 
         attributes: {
@@ -1399,30 +1402,13 @@ AN = function() {
 
     });
 
-    var OrderformingEditView = OrderformingAddView.extend({
-        template: JST['orderforming/add2'], defaultInput: "#quontity-input", submitForm: function(event) {
-            var val;
-            if (val = $('#quontity-input').val()) {
-                $.post(this.model.url + 'update/', {amount: val}, function(data) {
-                        if (data.error) {
-                            alert(data.error.text);
-                            return;
-                        }
-                        GLOBAL.trigger('fetch');
-                    }, 'json');
-                this.close();
-            }
-        }
-
-    });
-
     var OrderSavedConfirm = ConfirmView.extend({
         _text: {
             text: "У вас есть черновик запроса в редактировании",
             left: "Продолжить редактирование",
             right: "Создать новый"
         }, _onLeftClick: function() {
-            controller.navigate('new_order/edit', {trigger: true});
+            controller.navigate('new-order/edit', {trigger: true});
             this.destruct();
         }, _onRightClick: function() {
             var that = this;
@@ -1434,20 +1420,28 @@ AN = function() {
     });
 
     var OrderAutomaticalySavedConfirm = ConfirmView.extend({
+
         _text: {
             text: "Черновик запроса был сохранен автоматически, на момент вашего выхода",
             left: "Продолжить редактирование",
             right: "Создать новый"
-        }, _onLeftClick: function() {
-            controller.navigate('new_order/edit', {trigger: true});
+        },
+
+        _onLeftClick: function() {
+            controller.navigate('new-order/edit', { trigger: true });
             this.destruct();
-        }, _onRightClick: function() {
-            var that = this;
-            $.post('/order/new/delete/', function() {
-                controller.navigate('new-order', {trigger: true});
-                that.destruct();
-            })
+        },
+
+        _onRightClick: function() {
+            $.post('/order/new/delete/')
+                .then(this._onOrderDelete.bind(this))
+        },
+
+        _onOrderDelete: function() {
+            controller.navigate('new-order', { trigger: true }) ;
+            this.destruct();
         }
+
     });
 
     return {

@@ -1,63 +1,5 @@
 window.JST = {};
 
-window.JST['orders/head'] = _.template('<table cellspacing="0" cellpadding="0" border="0"> \
-                             <tbody> \
-                              <tr> \
-                               <td> \
-                                <table class="header"> \
-                                    <tbody> \
-                                        <tr> \
-                                            <td class="left-from-header"> </td><td class="header">Поставщик</td><td class="counter-green"><div class="degree"><%= col1 %></div></td> \
-                                        </tr> \
-                                    </tbody> \
-                                </table> \
-                               </td> \
-                               <td>     \
-                                <table class="header"> \
-                                    <tbody> \
-                                        <tr><td class="left-from-header"> </td><td class="header">В&nbsp;пути</td><td class="counter-red"><div class="degree"><%= col2 %></div></td></tr> \
-                                    </tbody> \
-                                </table> \
-                               </td> \
-                               <td>     \
-                                <table class="header"> \
-                                    <tbody> \
-                                        <tr><td class="left-from-header"> </td><td class="header">Мой&nbsp;склад</td><td class="counter-green"><div class="degree"><%= col3 %></div></td></tr> \
-                                    </tbody> \
-                                </table> \
-                               </td> \
-                              </tr> \
-                              <tr class="forsubheader"> \
-                                <td> \
-                                      <table class="subheader"> \
-                                        <tr> \
-                                            <td style="width: 94px;">подготовка</td> \
-                                            <td style="width: 90px;">счет</td> \
-                                            <td style="width: 92px;">разрешена отгрузка</td> \
-                                        </tr> \
-                                    </table> \
-                                </td>             \
-                                <td> \
-                                    <table class="subheader"> \
-                                        <tr> \
-                                            <td style="width: 90px;">подбор</td> \
-                                            <td style="width: 139px;">транспортировка</td> \
-                                        </tr> \
-                                    </table> \
-                                </td>             \
-                                <td> \
-                                    <table class="subheader"> \
-                                        <tr> \
-                                            <td style="width: 92px;">получен</td> \
-                                            <td style="width: 92px;">оплачен</td> \
-                                            <td style="width: 92px;">закрытие документов</td> \
-                                        </tr> \
-                                    </table> \
-                                </td>             \
-                              </tr>     \
-                             </tbody> \
-                             </table>');
-
 window.JST['orders/order'] = _.template('<div class="<%= state %>"><div class="row"> \
                 <div class="order-date"><%= date_order %></div>\
                 <div class="order-messages">\
@@ -508,8 +450,8 @@ window.JST['call'] = _.template(
 window.JST['confirm'] = _.template(
         '<div class="confirm__text"><%= text %></div>' +
         '<div class="confirm__buttons">' +
-            '<div class="confirm__button confirm__button-left"><%= left %></div>' +
-            '<div class="confirm__button confirm__button-right"><%= right %></div>' +
+            '<div class="confirm__button-left"><span class="button"><%= left %></span></div>' +
+            '<div class="confirm__button-right"><span class="button"><%= right %></span></div>' +
         '</div>'
 )
 

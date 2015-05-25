@@ -5,11 +5,14 @@ div.chat
 
     div.chat__right-column
         div.chat__header
-        span.regular-btn.action-btn.chat__send-message Отправить
+            div.progress-bar.blue.stripes(style="width:150px")
+                span(style="width:100%")
+        span.button.button_blue.chat__send-message Отправить
 
     div.chat__calls
-        span.regular-btn.green-btn.action-btn.chat__calls-button.makecall Позвонить ✆
-        span.regular-btn.action-btn.chat__calls-button.calls__show-button Список звонков ⇩
+        span.button.button_green.chat__calls-button.makecall Позвонить&nbsp;✆
+        br
+        span.button.button_blue.chat__calls-button.calls__show-button Список&nbsp;звонков&nbsp;⇩
 
     div.chat__window
 

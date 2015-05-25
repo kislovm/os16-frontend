@@ -1,0 +1,36 @@
+- var states = ['podbor', 's4et', 'otgruzka', 'podgotovka', 'transportirovka', 'polu4en', 'opla4en', 'zakrytie'];
+- var stateNumber = states.indexOf(state);
+
+tr.orders__order-date
+    td(colspan=8)=date_order
+
+tr.orders__order
+    a(href='#order/' + id)
+
+
+    each state, index in states
+
+        if index == 3 || index == 4
+
+            if index == 3
+
+                if stateNumber == 3 || stateNumber == 4
+
+                    td(colspan=2, class="orders__car orders__car_#{ states[stateNumber] }")
+                        orders__box-groups-holder
+                            while groups_count--
+                            div.orders__box-group
+                else
+                    td(colspan=2).orders__car
+
+
+        else if index == stateNumber
+            td.orders__box.orders__box_active
+            div.orders__box-groups-holder
+                while groups_count--
+                    div.orders__box-group
+
+        else
+            td.orders__box
+
+

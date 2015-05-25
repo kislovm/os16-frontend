@@ -2,6 +2,8 @@ var MessagesView = require('../messages-view/messages-view.js');
 
 var CallsCollection = require('./calls-collection.js');
 
+var CallView = require('../call/call-view.js');
+
 module.exports = MessagesView.extend({
 
     events: {
@@ -16,9 +18,8 @@ module.exports = MessagesView.extend({
 
     onAdd: function(call) {
         var messageHolder = $('<div class="calls__call">');
-        this.messageViews = (new CallView({el: messageHolder[0], model: call}));
+        this.messageViews = new CallView({ el: messageHolder[0], model: call });
         this.$el.find('.calls__list').prepend(messageHolder);
-
     }
 
 });

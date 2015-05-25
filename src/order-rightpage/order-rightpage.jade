@@ -1,0 +1,25 @@
+
+div.order__list-holder
+    table.order__list
+        thead.order__list-head
+            tr
+                th.order__list-sort(data-sort='row_num') #
+                th.order__list-sort(data-sort='name') наименование
+                th.order__list-sort(data-sort='amount') кол&#8209;во
+                th ед&#8209;изм
+                th.order__list-sort(data-sort='price') цена&nbsp;$
+                th.order__list-sort(data-sort='discount') спец. скидка
+                th.order__list-sort(data-sort='summ') сумма&nbsp;$
+                th.order__list-sort(data-sort='average') средняя прод.
+                th.order__list-sort(data-sort='special') спец условия
+
+        tbody.order__list-body
+
+div.order__leftpage-buttons
+    a.order__leftpage-button.order__add Добавить
+    | |
+    a.order__leftpage-button.order__add-from-xls Добавить из XLS
+    | |
+    a.order__leftpage-button(href='/order/' + id + '/xls/') Скачать из XLS
+    | |
+    a.order__leftpage-button(href='/') Назад

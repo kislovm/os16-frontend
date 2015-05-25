@@ -1,0 +1,19 @@
+table.orders
+    tr
+        th.orders__head(colspan=3) Поставщик
+            div.orders__head-counter.orders__head-counter-green=col1
+        th.orders__head(colspan=2) В пути
+            div.orders__head-counter.orders__head-counter-red=col2
+        th.orders__head(colspan=3) Мой склад
+            div.orders__head-counter.orders__head-counter-green=col3
+    tr
+        td.orders__subhead подготовка
+        td.orders__subhead счет
+        td.orders__subhead разрешена отгрузка
+        td.orders__subhead подбор
+        td.orders__subhead транспортировка
+        td.orders__subhead получен
+        td.orders__subhead оплачен
+        td.orders__subhead закрытие документов
+
+    tbody.orders__orders

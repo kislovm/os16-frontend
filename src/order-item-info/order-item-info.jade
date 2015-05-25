@@ -1,0 +1,22 @@
+h1.popup__header
+    | Информация о товаре
+    | &nbsp;«
+    =name
+    |»
+div
+    | Остаток по складу:&nbsp;
+    =stock_amount ? stock_amount : 'Нет'
+div
+    | В дороге:&nbsp;
+    =amount_in_way ? amount_in_way : 'Нет'
+div
+    | Скорость продаж:&nbsp;
+    =average
+    | &nbsp;
+    =ed_izm
+div
+    | Кратность коробок:&nbsp;
+    =amount_in_pack
+div
+    | Краткое описание применения:&nbsp;
+    =product_application

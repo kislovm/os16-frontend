@@ -7,7 +7,7 @@ module.exports = Backbone.View.extend({
     model: new Backbone.Model,
 
     events: {
-        'submit .add-from-xls__file-upload-form': '_onSubmit'
+        'click .add-from-xls__file-upload-button': '_onSubmit'
     },
 
     _onSubmit: function(e) {
@@ -19,7 +19,8 @@ module.exports = Backbone.View.extend({
 
                 alert('Позиции успешно добавлены');
 
-                GLOBAL.trigger('closePopups');
+                window.location.reload();
+
             },
             dataType: 'json'
         });

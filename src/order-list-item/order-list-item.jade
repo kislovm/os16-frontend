@@ -1,0 +1,29 @@
+td
+    span.order__row-num=row_num
+    div.order__row-controls
+        img.order__row-delete(src='/static/img/thrash.png')
+        img.order__row-info(src='/static/img/info-icon.png')
+td
+    if product_url
+        a(href=product_url, target='_blank')=name
+    else
+        =name
+td
+    input.order__amount-input(value=amount)
+
+    div.order__amount-controls
+        img.order__amount-control.order__amount-control_increase.order__amount-control_increase-by-1(src='/static/img/arrow.gif')
+        div.order__amount-control-count 1
+        img.order__amount-control.order__amount-control_decrease.order__amount-control_decrease-by-1(src='/static/img/arrow.gif')
+
+    div.order__amount-controls
+        img.order__amount-control.order__amount-control_increase.order__amount-control_increase-by-10(src='/static/img/arrow.gif')
+        div.order__amount-control-count 10
+        img.order__amount-control.order__amount-control_decrease.order__amount-control_decrease-by-10(src='/static/img/arrow.gif')
+
+td=ed_izm
+td=price
+td=discount
+td=summ
+td=average
+td=special
