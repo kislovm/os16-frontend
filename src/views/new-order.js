@@ -36,7 +36,7 @@ module.exports = Backbone.View.extend({
 
         $.get('/new-order/' + this.model.get('sequence') + '/', 'json')
            .success(function() {
-               controller.navigate('new_order/edit', { trigger: 'true' });
+               controller.navigate('new-order/edit', { trigger: 'true' });
            });
     },
 

@@ -14,7 +14,7 @@ module.exports = BaseView.extend({
     initialize: function() {
         this.collection.on('add', this._onAdd, this);
         this.collection.on('remove', this._onDelete, this);
-        this.views = [];
+        this.collection.on('sort', this.render, this);
         this.render();
     },
 
@@ -107,50 +107,16 @@ module.exports = BaseView.extend({
             model: model
         });
 
-        this.views.push(view);
-
         this.$el.find('.order__list-body').append(view.$el);
     },
 
-    _sortingParam: 'row_num',
-
-    _reversed: false,
-
     _sort: function(e)  {
         var sortingParam = $(e.currentTarget).data('sort');
-        var tbody = this.$el.find('tbody');
+        this.collection.comparator = this.collection.comparator == sortingParam ?
+            function(a) { return -parseFloat(a.get(sortingParam)) } :
+            sortingParam;
 
-        tbody.find('tr').detach();
-
-        if (this._sortingParam != sortingParam) {
-            this._reversed = true;
-        }
-
-        if (this._sortingParam == sortingParam && !this._reversed) {
-            tbody.append(
-                _
-                    .sortBy(this.views,
-                    function (view) {
-                        return parseInt(view.model.get(sortingParam));
-                    })
-                    .map(function (view) {
-                        return view.$el
-                    })
-                    .reverse());
-        } else {
-            tbody.append(
-                _
-                    .sortBy(this.views,
-                    function (view) {
-                        return parseInt(view.model.get(sortingParam));
-                    })
-                    .map(function (view) {
-                        return view.$el
-                    }));
-        }
-
-        this._sortingParam = sortingParam;
-        this._reversed = !this._reversed;
+        this.collection.sort();
     },
 
     render: function() {

@@ -7,9 +7,9 @@ module.exports = Backbone.View.extend({
 
         $.get('/new-messages/')
             .success(function(data) {
-                GLOBAL.trigger('new-message');
                 data = JSON.parse(data);
                 if(!!data.received) {
+                    GLOBAL.trigger('new-message');
                     _this.render(data.received);
                     _this._show()
                 }

@@ -594,6 +594,11 @@ AN = function() {
 
     var OrderView = ANView.extend({ //View элемента коллекции.
         _template: JST['orders/order'], //Его template в файле jst.js
+
+        initialize: function() {
+            this.on('change', this.render, this);
+        },
+
         render: function() { //Render элемента
             this.html = this._template(this.model.toJSON());
             //$('.orders__orders').html(require('./src/orders/orders-order.jade')(this.model.toJSON()));
